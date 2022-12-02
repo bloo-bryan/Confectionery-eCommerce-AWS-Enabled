@@ -28,3 +28,8 @@ Navigate to project 'server' directory and repeat the above commands for backend
 - MERCHANTS: Add product management page with create, edit, remove product functionality
 - MERCHANTS: View sales page
 - BACKEND: Express.js implement routes with AWS features
+
+# Appendix
+Cloud Infra Architecture: https://www.figma.com/file/EsYqQA0xKqWvBx6WvNwqzz/AWS-Cloud-Architecture-for-DDAC?node-id=0%3A1&t=Etot4GDY3vpLYqHC-1
+PowerPoint Slide: https://cloudmails-my.sharepoint.com/:p:/g/personal/tp059479_mail_apu_edu_my/EYpcJbjbtNxOsypjobgpDYYBcQ7gLqDgz4X1z_DSCEJPCw?e=JtUIFo
+Flowchart: https://cloud.smartdraw.com/share.aspx/?pubDocShare=264F60E0B26D5505040D433F54452217EF9
