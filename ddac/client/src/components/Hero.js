@@ -9,27 +9,24 @@ const Hero = () => {
     <Wrapper className='section-center'>
       <article className='content'>
         <h1>
-          design your <br />
-          comfort zone
+          Shop your <br />
+          favourite sweets
         </h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti iure
-          quasi odit tenetur unde officiis repudiandae quod deserunt quia eum?
+          Welcome to chocolate.com, we sells your favourite confectionery and chocolate from the shops all over malaysia.
         </p>
-        <Link to='/products' className='btn hero-btn'>
-          shop now
-        </Link>
       </article>
-      <article className='img-container'>
+      {/* <article className='img-container'>
         <img src={heroBcg} alt='nice table' className='main-img' />
         <img src={heroBcg2} alt='person working' className='accent-img' />
-      </article>
+      </article> */}
     </Wrapper>
   )
 }
 
 const Wrapper = styled.section`
-  min-height: 60vh;
+  max-height: 30vh;
+  min-height: 30vh;
   display: grid;
   place-items: center;
   .img-container {

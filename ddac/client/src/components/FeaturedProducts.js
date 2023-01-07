@@ -30,14 +30,16 @@ const FeaturedProducts = () => {
           return <Product key={product.id} {...product} />
         })}
       </div>
-      <Link to='/products' className='btn'>
+      {/* <Link to='/products' className='btn'>
         all products
-      </Link>
+      </Link> */}
     </Wrapper>
   )
 }
 
 const Wrapper = styled.section`
+  padding: 3rem;
+  max-height: 50vh;
   background: var(--clr-grey-10);
   .featured {
     margin: 4rem auto;

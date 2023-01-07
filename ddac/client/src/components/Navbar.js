@@ -16,7 +16,8 @@ const Nav = () => {
       <div className='nav-center'>
         <div className='nav-header'>
           <Link to='/'>
-            <img src={logo} alt='comfy sloth' />
+            Chocolate.com
+            {/* <img src={logo} alt='home page' /> */}
           </Link>
           <button type='button' className='nav-toggle' onClick={() => dispatch(openSidebar())}>
             <FaBars />
