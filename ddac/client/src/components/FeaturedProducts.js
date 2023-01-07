@@ -39,7 +39,6 @@ const FeaturedProducts = () => {
 
 const Wrapper = styled.section`
   padding: 3rem;
-  max-height: 50vh;
   background: var(--clr-grey-10);
   .featured {
     margin: 4rem auto;
