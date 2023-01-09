@@ -15,7 +15,7 @@ const Nav = () => {
     <NavContainer>
       <div className='nav-center'>
         <div className='nav-header'>
-          <Link to='/'>
+          <Link to='/' className='text-link'>
             Chocolate.com
             {/* <img src={logo} alt='home page' /> */}
           </Link>
@@ -28,13 +28,13 @@ const Nav = () => {
             const { id, text, url } = link
             return (
               <li key={id}>
-                <Link to={url}>{text}</Link>
+                <Link to={url} className='text-link'>{text}</Link>
               </li>
             )
           })}
           {/*{myUser && (*/}
             <li>
-              <Link to='/checkout'>checkout</Link>
+              <Link to='/checkout' className='text-link'>checkout</Link>
             </li>
           {/*)}*/}
         </ul>
@@ -50,6 +50,9 @@ const NavContainer = styled.nav`
   align-items: center;
   justify-content: center;
 
+  .text-link{
+    text-decoration: none;
+  }
   .nav-center {
     width: 90vw;
     margin: 0 auto;
