@@ -3,14 +3,24 @@ import styled from 'styled-components'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
+import { hideLoginPopUp, loginPost } from '../features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LoginPopUp = (props)=>{
-    const handleSubmit = (event)=>{
+    const dispatch = useDispatch();
+    const { showPopUp, loginStatus } = useSelector((store) => store.user);
+
+    const handleSubmit = async (event)=>{
         if (event) event.preventDefault();
-        const username = event.target[0].value;
-        const password = event.target[1].value;
-        console.log("username:"+username+"\npassword:"+password);
+        const loginCredential ={
+            username: event.target[0].value,
+            password: event.target[1].value,
+        }
+        const response = await dispatch(loginPost(loginCredential));
+        if (response.payload.status=="logged in"){
+            dispatch(hideLoginPopUp());
+        }
+        //todos: reroute user to correct pages
     }
 
     return (
@@ -19,6 +29,7 @@ const LoginPopUp = (props)=>{
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        show = {showPopUp}
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter" className='title'>
@@ -39,8 +50,9 @@ const LoginPopUp = (props)=>{
                         aria-describedby="passwordHelpBlock"
                         />
                     </Form.Group>
+                    {loginStatus? (<p style={{color: "red"}}>{loginStatus}</p>) :(<p></p>)}
                     <div className='form-action'>
-                        <label className='register-link'>Register a new account.</label>
+                        <label className='register-link'>Register a new account.</label> //todos: add private routes to register page
                         <Button type="submit" className='login-button'>Login</Button>
                     </div>
                 </Form>

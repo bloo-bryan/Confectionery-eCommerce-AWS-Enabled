@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {closeSidebar} from "../features/productsSlice";
 import {countCartTotals} from "../features/cartSlice";
+import { showLoginPopUp, showLogoutWarning, hideLoginPopUp, hideLogoutWarning} from '../features/userSlice';
 import {useDispatch, useSelector} from "react-redux";
-import { useState } from 'react';
 import LoginPopUp from './LoginPopUp';
+import LogoutWarning from './LogoutWarning';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CartButtons = () => {
+  var greeting;
+  var login_logout;
   const { total_items, cart } = useSelector((store) => store.cart);
   const { isLoggedIn, userID } = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -18,17 +22,12 @@ const CartButtons = () => {
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart]);
 
-  const [modalShow, setModalShow] = useState(false);
-
-  var greeting;
-  var login_logout;
-
   if (isLoggedIn){
     greeting = <p className='greeting'>Welcome, {userID}</p>
-    login_logout = <button type='button' className='auth-btn'> Logout <FaUserMinus /></button>
+    login_logout = <button type='button' className='auth-btn' onClick={ () => dispatch(showLogoutWarning()) }> Logout <FaUserMinus /></button>
   }else{
     greeting = <p className='greeting'></p>
-    login_logout = <button type='button' className='auth-btn' onClick = {() => setModalShow(true)}> Login <FaUserPlus /></button>
+    login_logout = <button type='button' className='auth-btn' onClick = {() => dispatch(showLoginPopUp())}> Login <FaUserPlus /></button>
   }
   
   return (
@@ -42,7 +41,8 @@ const CartButtons = () => {
         </span>
       </Link>
       {login_logout}
-      <LoginPopUp show={modalShow} onHide={()=> setModalShow(false)}/>
+      <LoginPopUp onHide={() => dispatch(hideLoginPopUp())}/>
+      <LogoutWarning />
     </Wrapper>
   )
 }
