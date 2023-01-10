@@ -52,7 +52,7 @@ const LoginPopUp = (props)=>{
                     </Form.Group>
                     {loginStatus? (<p style={{color: "red"}}>{loginStatus}</p>) :(<p></p>)}
                     <div className='form-action'>
-                        <label className='register-link'>Register a new account.</label> //todos: add private routes to register page
+                        <label className='register-link'>Register a new account.</label> {/* todos: add private routes to register page */}
                         <Button type="submit" className='login-button'>Login</Button>
                     </div>
                 </Form>
