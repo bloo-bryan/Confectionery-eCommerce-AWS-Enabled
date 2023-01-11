@@ -1,10 +1,18 @@
 import express from "express"
 import cors from "cors";
+import mysql from "mysql";
 
 const app = express();
 
 app.use(express.json())
 app.use(cors());
+
+const db = mysql.createConnection({
+    host: "ddac.c0keakeayjci.us-east-1.rds.amazonaws.com",
+    user: "admin",
+    password: "admin12345",
+    database: "ddac"
+})
 
 const users = [
     {
@@ -17,9 +25,17 @@ const users = [
     }
 ]
 
+// app.get('/users', (req, res) => {
+//     const q = "SELECT * FROM user";
+//     db.query(q, (err, data) => {
+//         if(err) return res.json(err);
+//         return res.json(data);
+//     })
+// })
+
 // ROUTES: app.get, app.post, app.put, etc.
 app.post('/login',(req, res)=>{
-    console.log('post request recieved')
+    console.log('post request received')
     console.log(req.body.username)
     console.log(req.body.password)
     console.log()
