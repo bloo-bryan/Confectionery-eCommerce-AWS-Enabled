@@ -17,6 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {filterProducts, loadProducts, sortProducts} from "./features/filterSlice";
 import {fetchProducts} from "./features/productsSlice";
 import { products_url as url } from './utils/constants'
+import S3TestPage from "./pages/S3TestPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function App() {
             <Route path='cart' element={<Cart/>}/>
             <Route path='products' element={<Products/>}/>
             <Route path='products/:id' element={<SingleProduct/>}/>
+            <Route path='uploader' element={<S3TestPage/>}/>
             <Route path='checkout' element={
               <PrivateRoute>
                 <Checkout/>
