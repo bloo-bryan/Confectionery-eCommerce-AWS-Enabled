@@ -5,14 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ddac/client/src/features/sellProductSlice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ddac/client/src/pages/S3TestPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/components/AdminNavbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/components/AdminSidebar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailInfo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailTable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/components/ProductTable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/pages/ManageOrderPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/pages/ManageProductPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/pages/OrderDetailPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/pages/ProductDetailPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/pages/WithNav.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/pages/WithoutNav.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/utils/orderdatatable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ddac/client/src/utils/productdatatable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +70,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ddac/client/src/utils" />
       <recent name="$PROJECT_DIR$/client" />
     </key>
   </component>
@@ -94,7 +110,8 @@
       <workItem from="1673441509919" duration="6032000" />
       <workItem from="1673453282997" duration="3614000" />
       <workItem from="1673501398766" duration="16510000" />
-      <workItem from="1673584663143" duration="2140000" />
+      <workItem from="1673584663143" duration="27217000" />
+      <workItem from="1673670736745" duration="10008000" />
     </task>
     <servers />
   </component>

@@ -55,13 +55,6 @@ function generateSKU() {
     return sku;
 }
 
-// app.get('/users', (req, res) => {
-//     const q = "SELECT * FROM user";
-//     db.query(q, (err, data) => {
-//         if(err) return res.json(err);
-//         return res.json(data);
-//     })
-// })
 
 // ROUTES: app.get, app.post, app.put, etc.
 app.get('/images', (req, res) => {

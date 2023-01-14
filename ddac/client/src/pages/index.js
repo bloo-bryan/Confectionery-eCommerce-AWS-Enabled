@@ -6,6 +6,12 @@ import Cart from './CartPage'
 import Error from './ErrorPage'
 import Checkout from './CheckoutPage'
 import PrivateRoute from './PrivateRoute'
+import ManageOrderPage from "./ManageOrderPage";
+import WithoutNav from "./WithoutNav";
+import WithNav from "./WithNav";
+import OrderDetailPage from "./OrderDetailPage";
+import ManageProductPage from "./ManageProductPage";
+import ProductDetailPage from "./ProductDetailPage";
 
 export {
     Home,
@@ -16,4 +22,10 @@ export {
     Error,
     Checkout,
     PrivateRoute,
+    ManageOrderPage,
+    WithoutNav,
+    WithNav,
+    OrderDetailPage,
+    ManageProductPage,
+    ProductDetailPage
 }

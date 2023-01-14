@@ -3,14 +3,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Navbar, Sidebar, Footer } from './components'
 
 import {
-  Home,
-  SingleProduct,
-  Cart,
-  Checkout,
-  Error,
-  About,
-  Products,
-  PrivateRoute,
+    Home,
+    SingleProduct,
+    Cart,
+    Checkout,
+    Error,
+    About,
+    Products,
+    PrivateRoute,
+    ManageOrderPage,
+    WithoutNav,
+    WithNav, OrderDetailPage, ManageProductPage, ProductDetailPage
 } from './pages'
 import {countCartTotals} from "./features/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
@@ -45,26 +48,31 @@ function App() {
 
   return (
       // <AuthWrapper>
-        <Router>
-          <Navbar />
-          <Sidebar />
+      <Router>
           <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='about' element={<About/>}/>
-            <Route path='cart' element={<Cart/>}/>
-            <Route path='products' element={<Products/>}/>
-            <Route path='products/:id' element={<SingleProduct/>}/>
-            <Route path='uploader' element={<S3TestPage/>}/>
-            <Route path='checkout' element={
-              <PrivateRoute>
-                <Checkout/>
-              </PrivateRoute>
-            }/>
-            <Route path='*' element={<Error/>}/>
-
+              <Route element={<WithoutNav />}>
+                  <Route path="/admin/orders" element={<ManageOrderPage />} />
+                  <Route path="/admin/orders/test" element={<OrderDetailPage />} />
+                  <Route path="/admin/products" element={<ManageProductPage />} />
+                  <Route path="/admin/add-product" element={<ProductDetailPage />} />
+                  <Route path="/admin/edit-product/:id" element={<ProductDetailPage title={"Edit Product"}/>} />
+              </Route>
+              <Route element={<WithNav />}>
+                  <Route path='/' element={<Home/>}/>
+                  <Route path='about' element={<About/>}/>
+                  <Route path='cart' element={<Cart/>}/>
+                  <Route path='products' element={<Products/>}/>
+                  <Route path='products/:id' element={<SingleProduct/>}/>
+                  <Route path='uploader' element={<S3TestPage/>}/>
+                  <Route path='checkout' element={
+                      <PrivateRoute>
+                          <Checkout/>
+                      </PrivateRoute>
+                  }/>
+                  <Route path='*' element={<Error/>}/>
+              </Route>
           </Routes>
-          <Footer />
-        </Router>
+      </Router>
       // </AuthWrapper>
   )
 }

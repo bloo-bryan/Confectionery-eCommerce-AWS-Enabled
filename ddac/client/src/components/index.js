@@ -16,6 +16,13 @@ import Sort from './Sort'
 import Stars from './Stars'
 import CartContent from './CarContent'
 import PageHero from './PageHero'
+import AdminNavbar from "./AdminNavbar";
+import AdminSidebar from "./AdminSidebar";
+import OrderTable from "./OrderTable";
+import OrderDetailHeader from "./OrderDetailHeader";
+import OrderDetailInfo from "./OrderDetailInfo";
+import OrderDetailTable from "./OrderDetailTable";
+import ProductTable from "./ProductTable";
 // import StripeCheckout from './StripeCheckout'
 export {
   FeaturedProducts,
@@ -36,4 +43,11 @@ export {
   Stars,
   CartContent,
   PageHero,
+  AdminSidebar,
+  AdminNavbar,
+  OrderTable,
+  OrderDetailInfo,
+  OrderDetailHeader,
+  OrderDetailTable,
+  ProductTable
 }

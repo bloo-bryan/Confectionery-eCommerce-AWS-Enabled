@@ -37,6 +37,9 @@ const Nav = () => {
               <Link to='/checkout' className='text-link'>checkout</Link>
             </li>
           {/*)}*/}
+            <li>
+                <Link to='/admin/orders' className='text-link'>my store</Link>
+            </li>
         </ul>
         <CartButtons />
       </div>
