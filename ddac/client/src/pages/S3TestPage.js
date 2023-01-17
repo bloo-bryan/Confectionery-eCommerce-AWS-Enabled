@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addProduct, fetchProducts, removeProducts} from "../features/sellProductSlice";
+import {addProduct} from "../features/adminProductSlice";
 
 // THIS IS A DEMO FOR HOW AWS S3 WORKS -- FEEL FREE TO CHANGE ANYTHING FOR EXPERIMENT
 // url: http://localhost:3000/uploader
@@ -27,8 +27,7 @@ import {addProduct, fetchProducts, removeProducts} from "../features/sellProduct
 const S3TestPage = () => {
     const [files, setFiles] = useState([]);     // local state containing currently uploaded files
     const [itemTitle, setItemTitle] = useState(''); // text box content
-    const dispatch = useDispatch(); // useDispatch to call functions in sellProductSlice.js
-    const {testUploadCount, testProducts} = useSelector((store) => store.sellProduct)   // getting states from sellProductSlice.js
+    const dispatch = useDispatch(); // useDispatch to call functions in adminProductSlice.js
 
     const addFile = (e) => {
         setFiles(e.target.files);
@@ -41,13 +40,13 @@ const S3TestPage = () => {
             formData.append('images', file) // adding uploaded file(s) to formData object, with the key 'images'
         }
         formData.append('title', itemTitle);
-        dispatch(addProduct(formData))  // calling addProduct function of sellProductSlice.js
+        dispatch(addProduct(formData))  // calling addProduct function of adminProductSlice.js
     }
 
     // calls fetchProducts function whenever testUploadCount value changes
-    useEffect(() => {
-        dispatch(fetchProducts());
-    }, [testUploadCount]);
+    // useEffect(() => {
+    //     dispatch(fetchProducts());
+    // }, [testUploadCount]);
 
 
     return (
@@ -57,13 +56,13 @@ const S3TestPage = () => {
                 <input type="text" onChange={e => setItemTitle(e.target.value)} name="title" placeholder="Product name"/>
                 <button onClick={submit} type="submit">Submit</button>
             </label>
-            {testProducts.length !== 0 ? testProducts.map((product) => {
-                return <div>
-                    <img key={product.id} src={product.url} alt={product.image_name}/>
-                    <h4>{product.name}</h4>
-                    <button onClick={() => dispatch(removeProducts(product.id))}>Delete</button>
-                </div>
-            }) : false}
+            {/*{testProducts.length !== 0 ? testProducts.map((product) => {*/}
+            {/*    return <div>*/}
+            {/*        <img key={product.id} src={product.url} alt={product.image_name}/>*/}
+            {/*        <h4>{product.name}</h4>*/}
+            {/*        <button onClick={() => dispatch(removeProducts(product.id))}>Delete</button>*/}
+            {/*    </div>*/}
+            {/*}) : false}*/}
         </main>
     )
 }

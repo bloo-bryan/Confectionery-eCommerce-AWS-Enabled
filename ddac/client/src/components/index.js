@@ -23,6 +23,7 @@ import OrderDetailHeader from "./OrderDetailHeader";
 import OrderDetailInfo from "./OrderDetailInfo";
 import OrderDetailTable from "./OrderDetailTable";
 import ProductTable from "./ProductTable";
+import ImageItem from "./ImageItem";
 // import StripeCheckout from './StripeCheckout'
 export {
   FeaturedProducts,
@@ -49,5 +50,6 @@ export {
   OrderDetailInfo,
   OrderDetailHeader,
   OrderDetailTable,
-  ProductTable
+  ProductTable,
+  ImageItem
 }

@@ -3,7 +3,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PersonIcon from '@mui/icons-material/Person';
 
-const OrderDetailInfo = () => {
+const OrderDetailInfo = ({data}) => {
     return (
         <div className="row">
             <div className="col-md-6 col-lg-4">
@@ -16,8 +16,8 @@ const OrderDetailInfo = () => {
                     <div className="text">
                         <h6 className="mb-1">Customer</h6>
                         <p className="mb-1">
-                            Name <br/>
-                            @username
+                            {data[0].custName} <br/>
+                            @{data[0].username}
                         </p>
                     </div>
                 </article>
@@ -32,7 +32,7 @@ const OrderDetailInfo = () => {
                     <div className="text">
                         <h6 className="mb-1">Order info</h6>
                         <p className="mb-1">
-                            Shipping: State <br/> Payment method: Card
+                            Shipping: {data[0].state} <br/> Payment method: Card
                         </p>
                     </div>
                 </article>
@@ -47,7 +47,7 @@ const OrderDetailInfo = () => {
                     <div className="text">
                         <h6 className="mb-1">Deliver to</h6>
                         <p className="mb-1">
-                            Address
+                            {data[0].address}
                         </p>
                     </div>
                 </article>

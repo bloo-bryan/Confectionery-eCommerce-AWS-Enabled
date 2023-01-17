@@ -52,7 +52,7 @@ function App() {
           <Routes>
               <Route element={<WithoutNav />}>
                   <Route path="/admin/orders" element={<ManageOrderPage />} />
-                  <Route path="/admin/orders/test" element={<OrderDetailPage />} />
+                  <Route path="/admin/orders/:id" element={<OrderDetailPage />} />
                   <Route path="/admin/products" element={<ManageProductPage />} />
                   <Route path="/admin/add-product" element={<ProductDetailPage />} />
                   <Route path="/admin/edit-product/:id" element={<ProductDetailPage title={"Edit Product"}/>} />

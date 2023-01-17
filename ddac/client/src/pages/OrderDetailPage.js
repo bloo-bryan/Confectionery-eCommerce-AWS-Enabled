@@ -1,10 +1,32 @@
-import {AdminNavbar, AdminSidebar, OrderDetailHeader, OrderDetailTable} from "../components"
+import {AdminNavbar, AdminSidebar, Loading, OrderDetailHeader, OrderDetailTable} from "../components"
 import styled from "styled-components";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {IconButton} from "@mui/material";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {fetchProductDetails, fetchProductImages} from "../features/adminProductSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchOrderDetails} from "../features/adminOrderSlice";
 
 const OrderDetailPage = () => {
+    const {id} = useParams();
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const {currentOrderDetails} = useSelector((store) => store.adminOrder)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            await dispatch(fetchOrderDetails(id));
+            setLoading(false);
+        }
+        fetchData().catch(console.error);
+    }, []);
+
+    if(loading) {
+        return <Loading/>
+    }
+
     return (
         <Wrapper>
             <AdminSidebar />
@@ -20,9 +42,9 @@ const OrderDetailPage = () => {
                         </Link>
                         <h1 className="title">Order Details</h1>
                     </span>
-                    <OrderDetailHeader/>
+                    {currentOrderDetails.length !== 0 ? <OrderDetailHeader data={currentOrderDetails}/> : false}
                     <br/>
-                    <OrderDetailTable/>
+                    {currentOrderDetails.length !== 0 ? <OrderDetailTable rows={currentOrderDetails}/> : false}
                 </div>
             </div>
         </Wrapper>

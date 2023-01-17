@@ -20,7 +20,7 @@ export const orderColumns = [
     },
 
     {
-        field: "date",
+        field: "dateAdded",
         headerName: "Date",
         width: 160,
     },

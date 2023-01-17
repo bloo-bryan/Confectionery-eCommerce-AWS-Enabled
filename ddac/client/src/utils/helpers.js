@@ -12,3 +12,15 @@ export const getUniqueValues = (data, type) => {
     }
     return ['all', ...new Set(unique)]
 }
+
+export function generateSKU() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let sku = '';
+
+    for (let i = 0; i < 8; i++) {
+        sku += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return sku;
+}
+
+

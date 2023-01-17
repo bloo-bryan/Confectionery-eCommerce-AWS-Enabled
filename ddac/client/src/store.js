@@ -3,7 +3,8 @@ import cartSlice from "./features/cartSlice";
 import filterSlice from "./features/filterSlice";
 import productsSlice from "./features/productsSlice";
 import userSlice from "./features/userSlice";
-import sellProductSlice from "./features/sellProductSlice";
+import adminProductSlice from "./features/adminProductSlice";
+import adminOrderSlice from "./features/adminOrderSlice";
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
         filter: filterSlice,
         products: productsSlice,
         user: userSlice,
-        sellProduct: sellProductSlice,
+        adminProduct: adminProductSlice,
+        adminOrder: adminOrderSlice
     },
 })
 

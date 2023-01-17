@@ -7,59 +7,59 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styled from "styled-components";
 
-const OrderDetailTable = () => {
-    const rows = [
-        {
-            id: 1143155,
-            product: "Acer Nitro 5",
-            img: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            customer: "John Smith",
-            date: "1 March",
-            amount: 785,
-            method: "Cash on Delivery",
-            status: "Approved",
-        },
-        {
-            id: 2235235,
-            product: "Playstation 5",
-            img: "https://m.media-amazon.com/images/I/31JaiPXYI8L._AC_UY327_FMwebp_QL65_.jpg",
-            customer: "Michael Doe",
-            date: "1 March",
-            amount: 900,
-            method: "Online Payment",
-            status: "Pending",
-        },
-        {
-            id: 2342353,
-            product: "Redragon S101",
-            img: "https://m.media-amazon.com/images/I/71kr3WAj1FL._AC_UY327_FMwebp_QL65_.jpg",
-            customer: "John Smith",
-            date: "1 March",
-            amount: 35,
-            method: "Cash on Delivery",
-            status: "Pending",
-        },
-        {
-            id: 2357741,
-            product: "Razer Blade 15",
-            img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
-            customer: "Jane Smith",
-            date: "1 March",
-            amount: 920,
-            method: "Online",
-            status: "Approved",
-        },
-        {
-            id: 2342355,
-            product: "ASUS ROG Strix",
-            img: "https://m.media-amazon.com/images/I/81hH5vK-MCL._AC_UY327_FMwebp_QL65_.jpg",
-            customer: "Harold Carol",
-            date: "1 March",
-            amount: 2000,
-            method: "Online",
-            status: "Pending",
-        },
-    ];
+const OrderDetailTable = ({rows}) => {
+    // const rows = [
+    //     {
+    //         id: 1143155,
+    //         product: "Acer Nitro 5",
+    //         img: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer: "John Smith",
+    //         date: "1 March",
+    //         amount: 785,
+    //         method: "Cash on Delivery",
+    //         status: "Approved",
+    //     },
+    //     {
+    //         id: 2235235,
+    //         product: "Playstation 5",
+    //         img: "https://m.media-amazon.com/images/I/31JaiPXYI8L._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer: "Michael Doe",
+    //         date: "1 March",
+    //         amount: 900,
+    //         method: "Online Payment",
+    //         status: "Pending",
+    //     },
+    //     {
+    //         id: 2342353,
+    //         product: "Redragon S101",
+    //         img: "https://m.media-amazon.com/images/I/71kr3WAj1FL._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer: "John Smith",
+    //         date: "1 March",
+    //         amount: 35,
+    //         method: "Cash on Delivery",
+    //         status: "Pending",
+    //     },
+    //     {
+    //         id: 2357741,
+    //         product: "Razer Blade 15",
+    //         img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer: "Jane Smith",
+    //         date: "1 March",
+    //         amount: 920,
+    //         method: "Online",
+    //         status: "Approved",
+    //     },
+    //     {
+    //         id: 2342355,
+    //         product: "ASUS ROG Strix",
+    //         img: "https://m.media-amazon.com/images/I/81hH5vK-MCL._AC_UY327_FMwebp_QL65_.jpg",
+    //         customer: "Harold Carol",
+    //         date: "1 March",
+    //         amount: 2000,
+    //         method: "Online",
+    //         status: "Pending",
+    //     },
+    // ];
     return (
         <Wrapper>
             <TableContainer component={Paper} className="table">
@@ -74,18 +74,18 @@ const OrderDetailTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.id}>
-                                <TableCell className="tableCell">{row.id}</TableCell>
+                        {rows.map((row, index) => (
+                            <TableRow key={index}>
+                                <TableCell className="tableCell">{row.SKU}</TableCell>
                                 <TableCell className="tableCell">
                                     <div className="cellWrapper">
-                                        <img src={row.img} alt="" className="image" />
-                                        {row.product}
+                                        <img src={row.url} alt="" className="image" />
+                                        {row.name}
                                     </div>
                                 </TableCell>
-                                <TableCell className="tableCell">{row.id}</TableCell>
-                                <TableCell className="tableCell">{row.customer}</TableCell>
-                                <TableCell className="tableCell">{row.date}</TableCell>
+                                <TableCell className="tableCell">{row.price}</TableCell>
+                                <TableCell className="tableCell">{row.quantity}</TableCell>
+                                <TableCell className="tableCell">{(row.price * row.quantity).toFixed(2)}</TableCell>
                             </TableRow>
                         ))}
                         <TableRow>
@@ -93,7 +93,7 @@ const OrderDetailTable = () => {
                             <TableCell className="tableCell"></TableCell>
                             <TableCell className="tableCell"></TableCell>
                             <TableCell className="tableCell" sx={{fontSize: '1rem'}}>Subtotal: <br/>Shipping: <br/>Grand total (RM):</TableCell>
-                            <TableCell className="tableCell" sx={{fontSize: '1rem'}}>100.00 <br/>4.99 <br/>104.99</TableCell>
+                            <TableCell className="tableCell" sx={{fontSize: '1rem'}}>{rows[0].total.toFixed(2)} <br/>{rows[0].shipping.toFixed(2)} <br/>{(rows[0].total + rows[0].shipping).toFixed(2)}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

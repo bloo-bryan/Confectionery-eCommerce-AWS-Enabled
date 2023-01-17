@@ -1,7 +1,7 @@
 export const productColumns = [
     {
         field: "name",
-        headerName: "Name",
+        headerName: "Product Name",
         width: 350,
         renderCell: (params) => {
             return (

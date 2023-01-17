@@ -12,8 +12,10 @@ import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {useSelector} from "react-redux";
 
 const AdminSidebar = () => {
+    const {currentProductDetails} = useSelector((store) => store.adminProduct)
     // const { dispatch } = useContext(DarkModeContext);
     return (
             <Wrapper>
@@ -37,12 +39,12 @@ const AdminSidebar = () => {
                                 <span>Products</span>
                             </li>
                         </Link>
-                        <Link to="/admin/add-product" style={{ textDecoration: "none" }}>
+                        {!currentProductDetails.name ? <Link to="/admin/add-product" style={{ textDecoration: "none" }}>
                             <li>
                                 <LocalShippingIcon className="icon" />
                                 <span>Add New Product</span>
                             </li>
-                        </Link>
+                        </Link> : false}
                         <Link to="/" style={{ textDecoration: "none" }}>
                             <li>
                                 <ExitToAppIcon className="icon" />

@@ -1,13 +1,21 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { orderColumns, orderRows } from "../utils/orderdatatable";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import styled from "styled-components";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import dayjs from "dayjs";
+import {dateTimeFormat} from "../utils/constants";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchOrders} from "../features/adminOrderSlice";
+import {Loading} from "./index";
 
 const OrderTable = () => {
     const [data, setData] = useState(orderRows);
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const {orders} = useSelector((store) => store.adminOrder);
 
     const handleDelete = (id) => {
         setData(data.filter((item) => item.id !== id));
@@ -21,20 +29,42 @@ const OrderTable = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to="/admin/orders/test" style={{ textDecoration: "none" }}>
+                        <Link to={`/admin/orders/${params.row.id}`} style={{ textDecoration: "none" }}>
                             <div className="viewButton">View</div>
                         </Link>
-                        <div
-                            className="deleteButton"
-                            onClick={() => handleDelete(params.row.id)}
-                        >
-                            Mark as Delivered
-                        </div>
                     </div>
                 );
             },
         },
     ];
+
+    const filterData = (orders) => {
+        let filtered = []
+        for (let order of orders) {
+            const {order_id: id, username, name, total: subtotal, shipping, dateAdded, status} = order;
+            const total = (subtotal + shipping).toFixed(2);
+            filtered.push({
+                id, name, username, total, status,
+                dateAdded: dayjs(dateAdded).format(dateTimeFormat)
+            })
+        }
+        setData(filtered);
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true)
+            const data = await dispatch(fetchOrders());
+            filterData(data.payload)
+            setLoading(false);
+        }
+        fetchData().catch(console.error)
+    }, []);
+
+    if(loading) {
+        return <Loading/>
+    }
+
     return (
             <Wrapper>
                 <div className="datatableTitle">

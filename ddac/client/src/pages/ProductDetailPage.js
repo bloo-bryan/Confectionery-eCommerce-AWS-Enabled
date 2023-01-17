@@ -1,14 +1,125 @@
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
-import {AdminNavbar, AdminSidebar} from "../components";
+import React, {useEffect, useState} from "react";
+import {AdminNavbar, AdminSidebar, ImageItem, Loading} from "../components";
 import styled from "styled-components";
-import {IconButton, TextField} from "@mui/material";
-import {Link, useParams} from "react-router-dom";
+import {FormControl, IconButton, ImageList, ImageListItem, Skeleton, TextField} from "@mui/material";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {
+    addProduct,
+    addProductImages, clearCurrentProduct,
+    fetchProductDetails,
+    fetchProductImages,
+    updateFields, updateProductDetails
+} from "../features/adminProductSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const ProductDetailPage = ({ title }) => {
-    const [file, setFile] = useState("");
+    const [files, setFiles] = useState([]);
+    const [uploaded, setUploaded] = useState([]);
+    const [uploadedUrl, setUploadedUrl] = useState([]);
+    const [loading, setLoading] = useState(false);
     const {id} = useParams();
+    const dispatch = useDispatch();
+    const {currentProductDetails, currentProductImages, uploading} = useSelector((store) => store.adminProduct)
+    const navigate = useNavigate();
+
+    const addFile = (e) => {
+        if(title) {
+            setFiles(e.target.files);
+        } else {
+            const newArr = [...uploaded];
+            for(let file of e.target.files) {
+                newArr.push(file);
+                console.log(uploadedUrl)
+            }
+            setUploaded(newArr);
+
+        }
+    }
+
+    const removePreview = (index) => {
+        const newUploaded = [...uploaded];
+        const newUploadedUrl = [...uploadedUrl];
+        newUploaded.splice(index, 1);
+        newUploadedUrl.splice(index, 1);
+        setUploaded(newUploaded);
+        setUploadedUrl(newUploadedUrl)
+    }
+
+    const uploadFiles = async() => {
+        const formData = new FormData();
+        for(let file of files) {
+            formData.append('images', file)
+        }
+        formData.append('pid', id);
+        await dispatch(addProductImages(formData));
+    }
+
+
+    const updateField = (name, value) => {
+        dispatch(updateFields({name, value}))
+    }
+
+    const submit = async (e) => {
+        e.preventDefault();
+        // TODO: ADD TOAST - UPLOAD AT LEAST 1 IMAGE
+        if(title && currentProductImages.length !== 0) {
+            await dispatch(updateProductDetails());
+            await dispatch(clearCurrentProduct());
+            navigate('/admin/products')
+        } else if(uploaded.length !== 0) {
+            setLoading(true)
+            const formData = new FormData();
+            for(let file of uploaded) {
+                formData.append('images', file)
+            }
+            await dispatch(addProduct(formData));
+            setLoading(false);
+            await dispatch(clearCurrentProduct());
+            navigate('/admin/products')
+        }
+
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            await dispatch(fetchProductDetails(id));
+            await dispatch(fetchProductImages(id));
+            setLoading(false);
+        }
+        if(title) {
+            fetchData().catch(console.error);
+        }
+    }, []);
+
+    useEffect(() => {
+        const fetchNewImages = async () => {
+            await dispatch(fetchProductImages(id));
+        }
+        if(files.length > 0 && title) {
+            uploadFiles()
+                .then(() => {
+                    return fetchNewImages()
+                })
+                .then(() => {})
+                .catch((error) => console.error(error))
+        } else if(uploaded.length > 0) {
+            // uploadFiles().then(() => {}).catch((error) => console.error(error))
+            console.log(uploaded)
+            const newArr = [];
+            for(let item of uploaded) {
+                const previewSrc = URL.createObjectURL(item);
+                newArr.push(previewSrc);
+            }
+            setUploadedUrl(newArr);
+        }
+    }, [files, uploaded]);
+
+    if(loading) {
+        return <Loading/>
+    }
 
     return (
         <Wrapper>
@@ -23,59 +134,65 @@ const ProductDetailPage = ({ title }) => {
                 </div>
                 <div className="bottom">
                     <div className="left">
-                        {/*<img*/}
-                        {/*    src={*/}
-                        {/*        file*/}
-                        {/*            ? URL.createObjectURL(file)*/}
-                        {/*            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"*/}
-                        {/*    }*/}
-                        {/*    alt=""*/}
-                        {/*/>*/}
+                        <ImageList sx={{ width: '100%', height: '100%' }} className='img-container' cols={2} rowHeight={164}>
+                        {title ? currentProductImages.map((item) => (
+                            <ImageListItem key={item.id} sx={{position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                                <ImageItem item={item} title={title}/>
+                            </ImageListItem>
+                        )) : uploadedUrl.map((item, index) => (
+                            <ImageListItem key={index} sx={{position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                                <ImageItem item={item} index={index} func={removePreview}/>
+                            </ImageListItem>
+                        ))}
+                        </ImageList>
                     </div>
                     <div className="right">
-                        <form>
+                        <form onSubmit={submit} >
                             <div className="formInput">
                                 <label htmlFor="file">
-                                    Image: <DriveFolderUploadOutlinedIcon className="icon" />
+                                    {uploading ? 'Uploading, please wait...' : 'Image (.jpeg, .png, .jpg):'} <DriveFolderUploadOutlinedIcon className="icon" />
                                 </label>
-                                <input
-                                    type="file"
-                                    id="file"
-                                    // onChange={(e) => setFile(e.target.files[0])}
-                                    style={{ display: "none" }}
-                                />
+                                <input disabled={uploading ? "disabled" : undefined} type="file" onChange={addFile} multiple="multiple" accept="image/jpeg, image/png, image/jpg"/>
                             </div>
 
                             <div className="formInput">
                                 <label>Product name</label>
-                                <TextField variant="standard" sx={{width: '100%'}}/>
+                                <TextField required variant="standard" sx={{width: '100%'}} name="name" value={currentProductDetails.name} onChange={(e) => updateField(e.target.name, e.target.value)}/>
                             </div>
                             <div className="formInput">
                                 <label>Brand</label>
-                                <TextField variant="standard" sx={{width: '100%'}}/>
+                                <TextField required variant="standard" sx={{width: '100%'}} name="brand" value={currentProductDetails.brand} onChange={(e) => updateField(e.target.name, e.target.value)}/>
                             </div>
                             <div className="formInput">
                                 <label>SKU</label>
-                                <TextField variant="standard" sx={{width: '100%'}}/>
+                                <TextField required variant="standard" sx={{width: '100%'}} name="SKU" value={currentProductDetails.SKU} onChange={(e) => updateField(e.target.name, e.target.value)}/>
                             </div>
                             <div className="formInput">
                                 <label>Category</label>
-                                <TextField variant="standard" sx={{width: '100%'}}/>
+                                <TextField required variant="standard" sx={{width: '100%'}} name="category" value={currentProductDetails.category} onChange={(e) => updateField(e.target.name, e.target.value)}/>
                             </div>
                             <div className="formInput">
                                 <label>Price</label>
-                                <TextField variant="standard" sx={{width: '100%'}}/>
+                                <TextField InputProps={{
+                                    inputProps: {
+                                        type: 'number'
+                                    }
+                                }} required variant="standard" sx={{width: '100%'}} name="price" value={currentProductDetails.price} onChange={(e) => updateField(e.target.name, e.target.value)}/>
                             </div>
                             <div className="formInput">
                                 <label>Description</label>
-                                <TextField multiline maxRows={8} variant="standard" sx={{width: '100%'}}/>
+                                <TextField multiline required maxRows={8} variant="standard" sx={{width: '100%'}} name="description" value={currentProductDetails.description} onChange={(e) => updateField(e.target.name, e.target.value)}/>
                             </div>
                             <div className="formInput">
                                 <label>Stock quantity</label>
-                                <TextField variant="standard" sx={{width: '100%'}}/>
+                                <TextField InputProps={{
+                                    inputProps: {
+                                        type: 'number'
+                                    }
+                                }} required variant="standard" sx={{width: '100%'}} name="quantity" value={currentProductDetails.quantity} onChange={(e) => updateField(e.target.name, e.target.value)}/>
                             </div>
 
-                            <button>Add Item</button>
+                            <button type="submit" >{title ? "Edit Item" : "Add Item"}</button>
                         </form>
                     </div>
                 </div>
@@ -111,12 +228,18 @@ const Wrapper = styled.div`
     flex: 1;
     text-align: center;
   }
+  
+  .btn {
+    position: absolute;
+    color: white;
+  }
 
-  .newContainer .top .left img, .newContainer .bottom .left img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
+  img:hover {
+    opacity: 0.5;
+  }
+  
+  .btn:hover {
+    color: crimson;
   }
 
   .newContainer .top .right, .newContainer .bottom .right {

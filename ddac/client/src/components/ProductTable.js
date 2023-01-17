@@ -1,16 +1,28 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { productColumns, productRows } from "../utils/productdatatable";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import styled from "styled-components";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {Loading} from "./index";
+import {fetchProducts, removeProduct} from "../features/adminProductSlice";
+import {useDispatch, useSelector} from "react-redux";
+import dayjs from "dayjs";
+import {dateTimeFormat} from "../utils/constants";
+import utc from 'dayjs/plugin/utc.js'
+
+dayjs.extend(utc)
 
 const ProductTable = () => {
-    const [data, setData] = useState(productRows);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const {products} = useSelector((store) => store.adminProduct);
 
     const handleDelete = (id) => {
         setData(data.filter((item) => item.id !== id));
+        dispatch(removeProduct(id));
     };
 
     const actionColumn = [
@@ -35,13 +47,39 @@ const ProductTable = () => {
             },
         },
     ];
+
+    const filterData = (products) => {
+        let filtered = []
+        for (let product of products) {
+            const {product_id: id, name, SKU, price, quantity: stock, created_at, category, image: img} = product;
+            filtered.push({
+                id, SKU, name, img, category, price: price.toFixed(2), stock,
+                dateAdded: dayjs(created_at).format(dateTimeFormat)
+            })
+        }
+        setData(filtered);
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true)
+            const data = await dispatch(fetchProducts());
+            console.log(data.payload)
+            filterData(data.payload)
+            setLoading(false);
+        }
+        fetchData().catch(console.error)
+    }, []);
+
+
+    if(loading) {
+        return <Loading/>
+    }
+
     return (
         <Wrapper>
             <div className="datatableTitle">
                 Manage Products
-                {/*<Link to="/users/new" className="link">*/}
-                {/*    Add New*/}
-                {/*</Link>*/}
                 <div className="search">
                     <input type="text" placeholder="Search..." />
                     <SearchOutlinedIcon />
@@ -53,7 +91,7 @@ const ProductTable = () => {
                         id="category-select-small"
                         // value={age}
                         label="Category"
-                        // onChange={handleChange}
+                        // onChange={handleChange} TODO: IMPLEMENT FILTER
                     >
                         <MenuItem value="">
                             <em>None</em>
