@@ -6,15 +6,15 @@ const ListView = ({ products }) => {
   return (
     <Wrapper>
       {products.map((product) => {
-        const { id, image, name, price, description } = product
+        const { product_id, image, name, price, description } = product
         return (
-          <article key={id}>
-            <img src={image} alt={name} />
+          <article key={product_id}>
+            <img src={image} alt={name} loading="lazy"/>
             <div>
               <h4>{name}</h4>
-              <h5 className='price'>{formatPrice(price)}</h5>
+              <h5 className='price'>RM{price.toFixed(2)}</h5>
               <p>{description.substring(0, 150)}...</p>
-              <Link to={`/products/${id}`} className='btn'>
+              <Link to={`/products/${product_id}`} className='btn'>
                 Details
               </Link>
             </div>
@@ -34,7 +34,7 @@ const Wrapper = styled.section`
     display: block;
     width: 300px;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: var(--radius);
     margin-bottom: 1rem;
   }

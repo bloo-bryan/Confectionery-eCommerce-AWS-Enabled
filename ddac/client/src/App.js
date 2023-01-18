@@ -29,7 +29,7 @@ function App() {
     const {sort, filters} = useSelector((store) => store.filter);
 
     useEffect(() => {
-        dispatch(fetchProducts(url))
+        dispatch(fetchProducts())
     }, [])
 
     useEffect(() => {
@@ -65,9 +65,9 @@ function App() {
                   <Route path='products/:id' element={<SingleProduct/>}/>
                   <Route path='uploader' element={<S3TestPage/>}/>
                   <Route path='checkout' element={
-                      <PrivateRoute>
+                      // <PrivateRoute>
                           <Checkout/>
-                      </PrivateRoute>
+                      // </PrivateRoute>
                   }/>
                   <Route path='*' element={<Error/>}/>
               </Route>

@@ -7,16 +7,15 @@ import {addToCart} from "../features/cartSlice";
 import {useDispatch} from "react-redux";
 
 const AddToCart = ({ product }) => {
-  const { id, stock, colors } = product
+  const { product_id, quantity } = product
   const dispatch = useDispatch();
-  const [mainColor, setMainColor] = useState(colors[0])
   const [amount, setAmount] = useState(1)
 
   const increase = () => {
     setAmount((oldAmount) => {
       let tempAmount = oldAmount + 1
-      if (tempAmount > stock) {
-        tempAmount = stock
+      if (tempAmount > quantity) {
+        tempAmount = quantity
       }
       return tempAmount
     })
@@ -31,30 +30,30 @@ const AddToCart = ({ product }) => {
     })
   }
 
-  const addItem = (id, mainColor, amount, product) => {
-    dispatch(addToCart({id, color: mainColor, amount, product}))
+  const addItem = (id, amount, product) => {
+    dispatch(addToCart({id, amount, product}))
   }
 
   return (
     <Wrapper>
       <div className='colors'>
         <span> colors : </span>
-        <div>
-          {colors.map((color, index) => {
-            return (
-              <button
-                key={index}
-                style={{ background: color }}
-                className={`${
-                  mainColor === color ? 'color-btn active' : 'color-btn'
-                }`}
-                onClick={() => setMainColor(color)}
-              >
-                {mainColor === color ? <FaCheck /> : null}
-              </button>
-            )
-          })}
-        </div>
+        {/*<div>*/}
+        {/*  {colors.map((color, index) => {*/}
+        {/*    return (*/}
+        {/*      <button*/}
+        {/*        key={index}*/}
+        {/*        style={{ background: color }}*/}
+        {/*        className={`${*/}
+        {/*          mainColor === color ? 'color-btn active' : 'color-btn'*/}
+        {/*        }`}*/}
+        {/*        onClick={() => setMainColor(color)}*/}
+        {/*      >*/}
+        {/*        {mainColor === color ? <FaCheck /> : null}*/}
+        {/*      </button>*/}
+        {/*    )*/}
+        {/*  })}*/}
+        {/*</div>*/}
       </div>
       <div className='btn-container'>
         <AmountButtons
@@ -65,7 +64,7 @@ const AddToCart = ({ product }) => {
         <Link
           to='/cart'
           className='btn'
-          onClick={() => addItem(id, mainColor, amount, product)}
+          onClick={() => addItem(product_id, amount, product)}
         >
           add to cart
         </Link>

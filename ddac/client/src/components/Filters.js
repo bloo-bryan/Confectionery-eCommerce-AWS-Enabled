@@ -10,20 +10,17 @@ const Filters = () => {
     filters: {
       text,
       category,
-      company,
-      color,
+      brand,
       min_price,
       price,
       max_price,
-      shipping,
     },
     all_products,
   } = useSelector((store) => store.filter)
   const dispatch = useDispatch();
 
   const categories = getUniqueValues(all_products, 'category')
-  const companies = getUniqueValues(all_products, 'company')
-  const colors = getUniqueValues(all_products, 'colors')
+  const brands = getUniqueValues(all_products, 'brand')
 
   const updateFilter = (name, value) => {
     dispatch(updateFilters({name, value}))
@@ -67,16 +64,16 @@ const Filters = () => {
             </div>
           </div>
           {/* end of categories */}
-          {/* companies */}
+          {/* brands */}
           <div className='form-control'>
-            <h5>company</h5>
+            <h5>brand</h5>
             <select
-              name='company'
-              value={company}
+              name='brand'
+              value={brand}
               onChange={(e) => updateFilter(e.target.name, e.target.value)}
-              className='company'
+              className='brand'
             >
-              {companies.map((c, index) => {
+              {brands.map((c, index) => {
                 return (
                   <option key={index} value={c}>
                     {c}
@@ -85,75 +82,21 @@ const Filters = () => {
               })}
             </select>
           </div>
-          {/* end of companies */}
-          {/* 
-          colors
-          */}
-          <div className='form-control'>
-            <h5>colors</h5>
-            <div className='colors'>
-              {colors.map((c, index) => {
-                if (c === 'all') {
-                  return (
-                    <button
-                      key={index}
-                      name='color'
-                      onClick={(e) => updateFilter(e.target.name, e.target.dataset.color)}
-                      data-color='all'
-                      className={`${
-                        color === 'all' ? 'all-btn active' : 'all-btn'
-                      }`}
-                    >
-                      all
-                    </button>
-                  )
-                }
-                return (
-                  <button
-                    key={index}
-                    name='color'
-                    style={{ background: c }}
-                    className={`${
-                      color === c ? 'color-btn active' : 'color-btn'
-                    }`}
-                    data-color={c}
-                    onClick={(e) => updateFilter(e.target.name, e.target.dataset.color)}
-                  >
-                    {color === c ? <FaCheck /> : null}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-          {/* 
-end of           colors
-          */}
+          {/* end of brands */}
           {/* price */}
           <div className='form-control'>
             <h5>price</h5>
-            <p className='price'>{formatPrice(price)}</p>
+            <p className='price'>RM{price}</p>
             <input
               type='range'
               name='price'
               min={min_price}
-              max={max_price}
+              max={Math.ceil(max_price)}
               onChange={(e) => updateFilter(e.target.name, Number(e.target.value))}
               value={price}
             />
           </div>
           {/* end of price */}
-          {/* shippping */}
-          <div className='form-control shipping'>
-            <label htmlFor='shipping'> free shipping</label>
-            <input
-              type='checkbox'
-              name='shipping'
-              id='shipping'
-              onChange={(e) => updateFilter(e.target.name, e.target.checked)}
-              checked={shipping}
-            />
-          </div>
-          {/* end of  shippping */}
         </form>
         <button type='button' className='clear-btn' onClick={() => dispatch(clearFilters())}>
           {' '}
@@ -197,7 +140,7 @@ const Wrapper = styled.section`
   .active {
     border-color: var(--clr-grey-5);
   }
-  .company {
+  .brand {
     background: var(--clr-grey-10);
     border-radius: var(--radius);
     border-color: transparent;

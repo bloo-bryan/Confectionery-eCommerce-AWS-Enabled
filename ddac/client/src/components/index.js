@@ -24,7 +24,7 @@ import OrderDetailInfo from "./OrderDetailInfo";
 import OrderDetailTable from "./OrderDetailTable";
 import ProductTable from "./ProductTable";
 import ImageItem from "./ImageItem";
-// import StripeCheckout from './StripeCheckout'
+import StripeCheckout from './StripeCheckout'
 export {
   FeaturedProducts,
   Navbar,
@@ -51,5 +51,6 @@ export {
   OrderDetailHeader,
   OrderDetailTable,
   ProductTable,
-  ImageItem
+  ImageItem,
+  StripeCheckout
 }

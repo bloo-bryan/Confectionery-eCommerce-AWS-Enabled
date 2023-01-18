@@ -8,9 +8,8 @@ const initialState = {
     sort: 'price-lowest',
     filters: {
         text: '',
-        company: 'all',
+        brand: 'all',
         category: 'all',
-        color: 'all',
         min_price: 0,
         max_price: 0,
         price: 0,
@@ -41,16 +40,15 @@ const filterSlice = createSlice({
                 filters: {
                     ...state.filters,
                     text: '',
-                    company: 'all',
+                    brand: 'all',
                     category: 'all',
-                    color: 'all',
                     price: state.filters.max_price,
                     shipping: false,
                 },
             }
         },
         filterProducts: (state) => {
-            const { text, category, company, color, price, shipping } = state.filters
+            const { text, category, brand, price, shipping } = state.filters
 
             let tempProducts = [...state.all_products]
             // filtering
@@ -66,17 +64,11 @@ const filterSlice = createSlice({
                     (product) => product.category === category
                 )
             }
-            // company
-            if (company !== 'all') {
+            // brand
+            if (brand !== 'all') {
                 tempProducts = tempProducts.filter(
-                    (product) => product.company === company
+                    (product) => product.brand === brand
                 )
-            }
-            // colors
-            if (color !== 'all') {
-                tempProducts = tempProducts.filter((product) => {
-                    return product.colors.find((c) => c === color)
-                })
             }
             // price
             tempProducts = tempProducts.filter((product) => product.price <= price)

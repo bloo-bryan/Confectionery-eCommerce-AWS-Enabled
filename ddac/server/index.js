@@ -6,14 +6,18 @@ import multer from "multer";
 import crypto from "crypto";
 import sharp from "sharp";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import Stripe from 'stripe';
 
 const app = express();
 
-app.use(express.json())
+app.use(express.urlencoded());
+app.use(express.json());
 app.use(cors());
 
 const storage = multer.memoryStorage();
 const upload = multer({storage: storage})
+
+const stripe = new Stripe('sk_test_51MReqiBcfCWP6dm5BP6Unr0FS4kOwdvXQaLgOsqVaEbKY8maj6DMrbBNOkWFdecfr6uRfIPF2Ke3M738BIoS62fb00eZsEXU7p');
 
 const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex')
 
@@ -26,9 +30,9 @@ const db = mysql.createConnection({
 
 const s3 = new S3Client({
     credentials: {
-        accessKeyId: 'ASIAVN2QEUHZVAJ5UBOQ',
-        secretAccessKey: 'RPUnhmWwVu6vl/b4DXOAy6LC7BksQy8c7f8t+9DD',
-        sessionToken: 'FwoGZXIvYXdzEOb//////////wEaDMctqbRuuHGo3hnG2SLJAQ7RxKcGXEI5dF+dHCQGcM11DPztBCix0sKuHPRpyTFCdnhMaOWKZgQGXxdwPVB4RlYPxZ8tlteeP2fCNoDirznNOLU2lx8WTM0en5kNe6FNX6ZY7TR2RHJWuPSRIse49c0d82URMrO8tyNwxEM048W0oHkofCX6+Kj5PFKccLyjH4kAiGDdABcOhu9YZ0Uow9bACa6oWzEpN+9Qh/zEOj0ueRnS2tLF4gh14vY85JXrBJwIi1ryf/rB+6VYHK1aQ+8wQkJqoP9fkSiI0JieBjItgS4TOR9feNvyd122eKO/CGHM0fupxc+ihIC6pq2uvscJ+qWiqLtMzzSP3GUO'
+        accessKeyId: 'ASIAVN2QEUHZ2HJV4LSD',
+        secretAccessKey: '2/sB4OSHTqXDO96UNuCM8Zo+JmhS8+KG3O/YrZE1',
+        sessionToken: 'FwoGZXIvYXdzEAgaDByYF+VafqJ2/uTgiyLJARQ1O4tkJrc0jSVFRvwcSLRIjV8Tpdn5/Y+8F/sBRVyp5W2Mg2fL4oStfBW6QcNzWvjHyyMxLtBTBzSMM3JIeeeXYr3uGrkLIujnVZe+o2YFolLhTIQ410Wcb7pxqL46ja6TzEv8a2aaX3N8csFHTZCdLbhbxcJI8klLRcsozTIeStv/m2t0/7PpwN2KhOp52CU2MaOIJbiGK6elMqbR21HumR9z1pRxXQ3mcMb5BOnri5G1lTjVw0mvLp/ihoxPbKRiOwXAPd7qTSi0kKCeBjItssAZB/lC4uZjX8U2S7oXBFgO7W/KZziHtLCTo75np5PAn0QgyqJuIN+fc1QQ'
     },
     region: 'us-east-1'
 })
@@ -82,7 +86,7 @@ app.get('/all-products/:mid', (req, res) => {
 
 app.get('/single-product/:pid', (req, res) => {
     const productId = req.params.pid;
-    const q = "SELECT p.product_id, p.merchant_id, p.name, p.description, p.SKU, p.brand, p.price, p.quantity, p.category FROM Product p WHERE p.product_id = ?";
+    const q = "SELECT p.product_id, p.merchant_id, md.name AS 'merchant_name', p.name, p.description, p.SKU, p.brand, p.price, p.quantity, p.category FROM Product p INNER JOIN MerchantDetail md ON p.merchant_id = md.merchant_id WHERE p.product_id = ?";
     db.query(q, [[productId]], async (err, data) => {
         if(err) return res.json(err);
         return res.json(data);
@@ -94,6 +98,22 @@ app.get('/all-orders/:mid', (req, res) => {
     const q = "SELECT o.order_id, u.username, cd.name, o.total, o.shipping, CONVERT_TZ(o.created_at, 'UTC', '+08:00') AS dateAdded, o.status FROM `User` u INNER JOIN CustomerDetail cd ON u.user_id = cd.user_id INNER JOIN `Order` o ON cd.customer_id = o.customer_id WHERE o.merchant_id = ?"
     db.query(q, [[merchantId]], async (err, data) => {
         if(err) return res.json(err);
+        return res.json(data);
+    })
+})
+
+app.get('/all-products', (req, res) => {
+    const q = "SELECT p.product_id, p.merchant_id, p.name, p.description, p.SKU, p.brand, p.price, p.quantity, CONVERT_TZ(p.created_at, 'UTC', '+08:00') AS created_at, p.category, GROUP_CONCAT(pd.image_name) AS image from Product p INNER JOIN ProductDetail pd ON p.product_id = pd.product_id GROUP BY p.product_id";
+    db.query(q, async (err, data) => {
+        if(err) return res.json(err);
+        for(let item of data) {
+            const getObjectParams = {
+                Bucket: 'ddac-s3',
+                Key: item.image.split(',')[0]
+            }
+            const command = new GetObjectCommand(getObjectParams);
+            item['image'] = await getSignedUrl(s3, command, {expiresIn: 3600})  //expiry in seconds
+        }
         return res.json(data);
     })
 })
@@ -177,6 +197,29 @@ app.post('/upload-img', upload.array('images', 10), async (req, res) => {
     })
 })
 
+app.post('/payment', cors(), async(req, res) => {
+    let {cart, shipping_fee, total_amount} = req.body;
+    console.log(req.body)
+    try {
+        const payment = await stripe.paymentIntents.create({
+            amount: (shipping_fee + total_amount).toFixed(2) * 100,
+            currency: "MYR",
+        })
+        // console.log("Payment", payment)
+        res.json({
+            message: "Payment successful",
+            success: true,
+            clientSecret: payment.client_secret
+        })
+    } catch(error) {
+        console.log("Error", error)
+        res.json({
+            message: "Payment failed",
+            success: false
+        })
+    }
+})
+
 app.delete('/images/:id', async(req, res) => {
     const imageId = req.params.id;
     const q = "SELECT * FROM ProductDetail pd WHERE pd.id = ?"
@@ -237,6 +280,16 @@ app.put('/update-status/:oid', (req, res) => {
     const {status} = req.body;
     const q = "UPDATE `Order` SET `status` = ? WHERE `order_id` = ?"
     db.query(q, [status, orderId], (err, data) => {
+        if(err) return res.json(err);
+        return res.json(data);
+    })
+})
+
+app.put('/update-quantity/:pid', (req, res) => {
+    const productId = req.params.pid;
+    const {quantity} = req.body;
+    const q = "UPDATE `Product` SET `quantity` = `quantity` - ? WHERE `product_id` = ?"
+    db.query(q, [quantity, productId], (err, data) => {
         if(err) return res.json(err);
         return res.json(data);
     })

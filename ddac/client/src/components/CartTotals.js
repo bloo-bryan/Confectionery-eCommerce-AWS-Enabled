@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 const CartTotals = () => {
   const { total_amount, shipping_fee } = useSelector((store) => store.cart)
@@ -12,21 +13,21 @@ const CartTotals = () => {
       <div>
         <article>
           <h5>
-            subtotal : <span>{formatPrice(total_amount)}</span>
+            subtotal : <span>RM {total_amount.toFixed(2)}</span>
           </h5>
           <p>
-            shipping fee : <span>{formatPrice(shipping_fee)}</span>
+            shipping fee : <span>RM {shipping_fee.toFixed(2)}</span>
           </p>
           <hr />
           <h4>
             order total :{' '}
-            <span>{formatPrice(total_amount + shipping_fee)}</span>
+            <span>RM {(total_amount + shipping_fee).toFixed(2)}</span>
           </h4>
         </article>
         {/*{myUser ? (*/}
-        {/*  <Link to='/checkout' className='btn'>*/}
-        {/*    proceed to checkout*/}
-        {/*  </Link>*/}
+          <Link to='/checkout' className='btn'>
+            proceed to checkout
+          </Link>
         {/*) : (*/}
           <button type='button' className='btn'
                   // onClick={loginWithRedirect}

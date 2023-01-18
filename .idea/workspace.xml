@@ -5,32 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ddac/client/src/components/ImageItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/AddToCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/AddToCart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/src/components/AdminNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/AdminNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/AdminSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/AdminSidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/ProductTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/ProductTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/CartItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/CartItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/CartTotals.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/CartTotals.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/Filters.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/Filters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/GridView.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/GridView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/ListView.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/ListView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/Product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/ProductImages.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/ProductImages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/StripeCheckout.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/StripeCheckout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/sellProductSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/ManageOrderPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/ManageOrderPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/ManageProductPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/ManageProductPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/OrderDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/OrderDetailPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/ProductDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/ProductDetailPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/S3TestPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/S3TestPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/utils/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/utils/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/utils/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/utils/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/utils/orderdatatable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/utils/orderdatatable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/utils/productdatatable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/utils/productdatatable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/cartSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/cartSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/filterSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/filterSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/productsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/productsSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/CheckoutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/CheckoutPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/SingleProductPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/SingleProductPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +114,10 @@
       <workItem from="1673670736745" duration="13781000" />
       <workItem from="1673755697895" duration="23591000" />
       <workItem from="1673843287773" duration="25162000" />
-      <workItem from="1673930086408" duration="15942000" />
+      <workItem from="1673930086408" duration="17457000" />
+      <workItem from="1673966257604" duration="758000" />
+      <workItem from="1674006014332" duration="598000" />
+      <workItem from="1674053297335" duration="12409000" />
     </task>
     <servers />
   </component>

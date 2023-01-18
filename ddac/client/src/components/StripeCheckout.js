@@ -11,14 +11,15 @@ import axios from 'axios'
 import { formatPrice } from '../utils/helpers'
 import { useNavigate} from 'react-router-dom'
 import {clearCart} from "../features/cartSlice";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
-const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+const promise = loadStripe('pk_test_51MReqiBcfCWP6dm5gxptxfP2D34Q8TWaJdyUeljatTgKccYUX2psMtkNwo70N91rJbKJMmEPcoXcYilHJ0z0gSrt00yd098wkp')
 
 const CheckoutForm = () => {
   const { cart, total_amount, shipping_fee } = useSelector((store) => store.cart);
   // const { myUser } = useSelector((store) => store.user)
   const navigate = useNavigate()
+  const dispatch = useDispatch();
   // STRIPE STUFF
   const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState(null)
@@ -49,8 +50,7 @@ const CheckoutForm = () => {
   const createPaymentIntent = async () => {
     try {
       const { data } = await axios.post(
-        '/.netlify/functions/create-payment-intent',
-        JSON.stringify({ cart, shipping_fee, total_amount })
+          'http://localhost:8800/payment', { cart, shipping_fee, total_amount }
       )
 
       setClientSecret(data.clientSecret)
@@ -63,6 +63,17 @@ const CheckoutForm = () => {
     createPaymentIntent()
     // eslint-disable-next-line
   }, [])
+
+  const removeQuantity = async() => {
+    try {
+      for (let item of cart) {
+        const quantity = item.amount
+        await axios.put(`http://localhost:8800/update-quantity/${item.id}`, {quantity})
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleChange = async (event) => {
     setDisabled(event.empty)
@@ -84,7 +95,8 @@ const CheckoutForm = () => {
       setProcessing(false)
       setSucceeded(true)
       setTimeout(() => {
-        clearCart()
+        removeQuantity().catch(console.error);
+        dispatch(clearCart())
         navigate('/')
       }, 1000)
     }
@@ -101,7 +113,7 @@ const CheckoutForm = () => {
       ) : (
         <article>
           {/*<h4>Hello, {myUser && myUser.name}</h4>*/}
-          <p>Your total is {formatPrice(shipping_fee + total_amount)}</p>
+          <p>Your total is RM {(shipping_fee + total_amount).toFixed(2)}</p>
           <p>Test Card Number : 4242 4242 4242 4242</p>
         </article>
       )}
@@ -124,9 +136,9 @@ const CheckoutForm = () => {
         )}
         {/* Show  a success message upon completion */}
         <p className={succeeded ? 'result-message' : 'result-message hidden'}>
-          Payment succedded, see the result in your
+          Payment succeeded, see the result in your
           <a href={`https://dashboard.stripe.com/test/payments`}>
-            Stripe dasboard.
+            Stripe dashboard.
           </a>
           Refresh the page to pay again
         </p>

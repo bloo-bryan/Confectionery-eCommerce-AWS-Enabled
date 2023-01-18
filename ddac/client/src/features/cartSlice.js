@@ -13,7 +13,7 @@ const initialState = {
     cart: getLocalStorage(),
     total_items: 0,
     total_amount: 0,
-    shipping_fee: 534,
+    shipping_fee: 4.99,
 }
 
 const cartSlice = createSlice({
@@ -21,11 +21,11 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, {payload}) => {
-            const {id, color, amount, product} = payload;
-            const tempItem = state.cart.find((i) => i.id === id + color)
+            const {id, amount, product} = payload;
+            const tempItem = state.cart.find((i) => i.id === id)
             if (tempItem) {
                 const tempCart = state.cart.map((cartItem) => {
-                    if (cartItem.id === id + color) {
+                    if (cartItem.id === id) {
                         let newAmount = cartItem.amount + amount
                         if (newAmount > cartItem.max) {
                             newAmount = cartItem.max
@@ -39,13 +39,12 @@ const cartSlice = createSlice({
                 return { ...state, cart: tempCart }
             } else {
                 const newItem = {
-                    id: id + color,
+                    id: id,
                     name: product.name,
-                    color,
                     amount,
-                    image: product.images[0].url,
+                    image: product.url[0],
                     price: product.price,
-                    max: product.stock,
+                    max: product.quantity,
                 }
                 return { ...state, cart: [...state.cart, newItem] }
             }

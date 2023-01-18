@@ -9,7 +9,7 @@ const AdminNavbar = () => {
                     </div>
                     <div className="items">
                         <div className="item">
-                            <Typography variant="subtitle1">merchant username</Typography>
+                            <Typography variant="subtitle1">merchant name</Typography>
                         </div>
                         <div className="item">
                             <img
