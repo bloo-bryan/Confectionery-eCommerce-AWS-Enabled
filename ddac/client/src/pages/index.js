@@ -12,6 +12,7 @@ import WithNav from "./WithNav";
 import OrderDetailPage from "./OrderDetailPage";
 import ManageProductPage from "./ManageProductPage";
 import ProductDetailPage from "./ProductDetailPage";
+import RegisterPage from "./RegisterPage";
 
 export {
     Home,
@@ -27,5 +28,6 @@ export {
     WithNav,
     OrderDetailPage,
     ManageProductPage,
-    ProductDetailPage
+    ProductDetailPage,
+    RegisterPage
 }

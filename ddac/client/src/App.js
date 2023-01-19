@@ -13,7 +13,7 @@ import {
     PrivateRoute,
     ManageOrderPage,
     WithoutNav,
-    WithNav, OrderDetailPage, ManageProductPage, ProductDetailPage
+    WithNav, OrderDetailPage, ManageProductPage, ProductDetailPage , RegisterPage
 } from './pages'
 import {countCartTotals} from "./features/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
@@ -69,6 +69,7 @@ function App() {
                           <Checkout/>
                       // </PrivateRoute>
                   }/>
+                  <Route path='register' element={<RegisterPage/>}/>
                   <Route path='*' element={<Error/>}/>
               </Route>
           </Routes>

@@ -37,17 +37,6 @@ const s3 = new S3Client({
     region: 'us-east-1'
 })
 
-const users = [
-    {
-        userID: 'jaden',
-        password: 'passwd',
-        contactNo: '01010'
-    },{
-        userID: 'john',
-        password: 'passwd',
-    }
-]
-
 // ROUTES: app.get, app.post, app.put, etc.
 app.get('/product-images/:pid', (req, res) => {
     const productId = req.params.pid;
@@ -141,20 +130,29 @@ app.post('/login',(req, res)=>{
     console.log(req.body.username)
     console.log(req.body.password)
     console.log()
-    let user, result;
-    if(user = users.find(user => user.userID === req.body.username)){
-        if (user.password === req.body.password){
-            result = {
-                status: 'logged in',
-                user: user,
+    var result;
+    const q = 'SELECT * FROM ddac.User WHERE username = ?'
+    const values = [req.body.username]
+    db.query(q, values, (err, data) => {
+        if(err) {
+            console.log(err);
+            return res.send({status: 'database error'});
+        }
+        if(data[0]){
+            if(data[0].password == req.body.password){
+                result = {
+                    status: 'logged in',
+                    username: data[0].username,
+                    role: data[0].role,
+                }
+            }else{
+                result = {status: 'wrong password'}
             }
         }else{
-            result = {status: 'wrong password'}
+            result = {status: 'user not found'};
         }
-    }else{
-        result = {status: 'user not found'}
-    }
-    res.send(result)
+        res.send(result);
+    })
 })
 
 app.post('/register',(req,res)=>{

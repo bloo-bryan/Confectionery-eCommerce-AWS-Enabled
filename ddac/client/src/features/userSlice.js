@@ -45,12 +45,8 @@ const userSlice = createSlice({
         builder
             .addCase(loginPost.fulfilled, (state, action)=>{
                 if (action.payload.status == 'logged in'){
-                    const user = action.payload.user;
-                    var tempUser={};
-                    for (const prop in user){
-                        tempUser[prop] = user[prop];
-                    }
-                    return { isLoggedIn: true, ...tempUser };
+                    const result = action.payload;
+                    return { isLoggedIn: true, userID: result.username, role: result.role};
                 }
                 return {...state, loginStatus: action.payload.status};
             })

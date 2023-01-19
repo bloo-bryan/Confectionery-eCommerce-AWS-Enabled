@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import {Link} from 'react-router-dom'
 import { hideLoginPopUp, loginPost } from '../features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -52,7 +53,7 @@ const LoginPopUp = (props)=>{
                     </Form.Group>
                     {loginStatus? (<p style={{color: "red"}}>{loginStatus}</p>) :(<p></p>)}
                     <div className='form-action'>
-                        <label className='register-link'>Register a new account.</label> {/* todos: add private routes to register page */}
+                        <Link to='register' className='register-link'>Register a new account.</Link>
                         <Button type="submit" className='login-button'>Login</Button>
                     </div>
                 </Form>
