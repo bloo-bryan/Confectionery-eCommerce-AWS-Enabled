@@ -126,10 +126,7 @@ app.get('/single-order/:oid', (req, res) => {
 
 
 app.post('/login',(req, res)=>{
-    console.log('post request received')
-    console.log(req.body.username)
-    console.log(req.body.password)
-    console.log()
+    console.log('Login requested')
     var result;
     const q = 'SELECT * FROM ddac.User WHERE username = ?'
     const values = [req.body.username]
@@ -155,8 +152,37 @@ app.post('/login',(req, res)=>{
     })
 })
 
-app.post('/register',(req,res)=>{
+app.post('/checkUser', (req,res)=>{
+    const { username } = req.body
+    const checkName = "SELECT * FROM ddac.User WHERE username = ?"
+    db.query(checkName, username,(err, data)=>{
+        if(err) return res.json(err);
+        if(data[0] != null){
+            console.log("username taken")
+            return res.send({status: 'Username is taken!'})
+        }else{
+            return res.send({status: 'Username is valid!'})
+        }
+    })
+})
 
+app.post('/register', (req,res)=>{
+    console.log(req.body)
+    const insertUser = "INSERT INTO ddac.User SET username = ?, password = ?, role = ?"
+    const userData = [username, password, role]
+    db.query(insertUser, userData, (err, data) => {
+        if(err) return res.json(err);
+        console.log(data);
+    })
+    switch (role){
+        case 'customer':
+            const insertCustomer = "INSERT INTO ddac.CustomerDetail SET"
+            break;
+        case 'merchant':
+            
+            break;
+    }
+    
 })
 
 app.post('/add-product', (req, res) => {
