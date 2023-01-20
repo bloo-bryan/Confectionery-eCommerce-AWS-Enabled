@@ -25,9 +25,7 @@ const LogoutWarning = () => {
 
 const StyledModal = styled(Modal)`
 .body{
-    background-color: rgba(252, 248, 227, 1);
     border-color: rgba(177, 161, 129, 1);
-    color: rgba(138, 109, 59, 1);
     border-radius: 10px;
     padding: 5%;
 }
@@ -46,6 +44,7 @@ const StyledModal = styled(Modal)`
     border-color: rgba(177, 161, 129, 1);
 }
 .cancel-button:hover{
+    color: white;
     background: rgba(177, 161, 129, 1);
     border-color: rgba(177, 161, 129, 1);
 }
