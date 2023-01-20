@@ -19,6 +19,7 @@ import {countCartTotals} from "./features/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {filterProducts, loadProducts, sortProducts} from "./features/filterSlice";
 import {fetchProducts} from "./features/productsSlice";
+import {checkUser} from "./features/userSlice";
 import { products_url as url } from './utils/constants'
 import S3TestPage from "./pages/S3TestPage";
 
@@ -27,6 +28,15 @@ function App() {
     const {cart} = useSelector((store) => store.cart);
     const {products} = useSelector((store) => store.products);
     const {sort, filters} = useSelector((store) => store.filter);
+    const { isLoggedIn, userDetails } = useSelector((store) => store.user);
+
+    useEffect(()=>{
+        window.localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+    }, [isLoggedIn])
+
+    useEffect(()=>{
+        window.localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    }, [userDetails])
 
     useEffect(() => {
         dispatch(fetchProducts())

@@ -14,7 +14,7 @@ const CartButtons = () => {
   var greeting;
   var login_logout;
   const { total_items, cart } = useSelector((store) => store.cart);
-  const { isLoggedIn, userID } = useSelector((store) => store.user);
+  const { isLoggedIn, userDetails } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const CartButtons = () => {
   }, [cart]);
 
   if (isLoggedIn){
-    greeting = <p className='greeting'>Welcome, {userID}</p>
+    greeting = <p className='greeting'>Welcome, {userDetails.name}</p>
     login_logout = <button type='button' className='auth-btn' onClick={ () => dispatch(showLogoutWarning()) }> Logout <FaUserMinus /></button>
   }else{
     greeting = <p className='greeting'></p>

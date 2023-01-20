@@ -127,28 +127,48 @@ app.get('/single-order/:oid', (req, res) => {
 
 app.post('/login',(req, res)=>{
     console.log('Login requested');
-    var result;
     const q = 'SELECT * FROM ddac.User WHERE username = ?';
-    const values = [req.body.username];
-    db.query(q, values, (err, data) => {
-        if(err) {
-            console.log(err);
-            return res.send({status: 'database error'});
-        }
+    const username = [req.body.username];
+    db.query(q, username, (err, data) => {
+        if(err) return res.json(err);
         if(data[0]){
-            if(data[0].password == req.body.password){
-                result = {
-                    status: 'logged in',
-                    username: data[0].username,
-                    role: data[0].role,
-                }
-            }else{
-                result = {status: 'wrong password'};
+            if(data[0].password != req.body.password) return res.send({status: 'wrong password'});
+            const role = data[0].role;
+            var userQuery, result;
+            switch (role){
+                case 'customer':
+                    userQuery = 'SELECT * FROM ddac.CustomerDetail WHERE name = ?'
+                    db.query(userQuery, username, (err,data) =>{
+                        if(err) return res.json(err);
+                        result = {
+                            status: 'logged in',
+                            username: username,
+                            role: role,
+                            mobile: data[0].mobile,
+                            shipping: data[0].shipping,
+                            state: data[0].state,
+                        }
+                        return res.send(result);
+                    })
+                    break;
+                case 'merchant': 
+                    console.log('fetching merchant detail');
+                    userQuery = 'SELECT * FROM ddac.MerchantDetail WHERE name = ?'
+                    db.query(userQuery, username, (err,data) =>{
+                        if(err) return res.json(err);
+                        result = {
+                            status: 'logged in',
+                            username: username,
+                            role: role,
+                            mobile: data[0].mobile,
+                        }
+                        return res.send(result);
+                    })
+                    break;
             }
         }else{
-            result = {status: 'user not found'};
+            return res.send({status: 'user not found'});
         }
-        res.send(result);
     })
 })
 
