@@ -152,7 +152,6 @@ app.post('/login',(req, res)=>{
                     })
                     break;
                 case 'merchant': 
-                    console.log('fetching merchant detail');
                     userQuery = 'SELECT * FROM ddac.MerchantDetail WHERE name = ?'
                     db.query(userQuery, username, (err,data) =>{
                         if(err) return res.json(err);
