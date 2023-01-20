@@ -18,7 +18,7 @@ const LoginPopUp = (props)=>{
             password: event.target[1].value,
         }
         const response = await dispatch(loginPost(loginCredential));
-        if (response.payload.status=="logged in"){
+        if (response.payload.status === "logged in"){
             dispatch(hideLoginPopUp());
         }
         //todos: reroute user to correct pages

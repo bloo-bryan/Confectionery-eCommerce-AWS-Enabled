@@ -21,6 +21,28 @@ export const loginPost = createAsyncThunk('login',async (loginCredential)=>{
     }
 })
 
+export const checkUsernamePost = createAsyncThunk('checkUsername',async(username)=>{
+    try{
+        const response = await axios.post('http://localhost:8800/checkUsername',{
+            username : username,
+        })
+        return response.data;
+    }catch (err) {
+        return err.message;
+    }
+})
+
+export const registerPost = createAsyncThunk('register',async(registrationData)=>{
+    try{
+        const response = await axios.post('http://localhost:8800/register',{
+            ...registrationData
+        })
+        return response.data;
+    }catch (err) {
+        return err.message;
+    }
+})
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -44,11 +66,17 @@ const userSlice = createSlice({
     extraReducers(builder) {
         builder
             .addCase(loginPost.fulfilled, (state, action)=>{
-                if (action.payload.status == 'logged in'){
+                if (action.payload.status === 'logged in'){
                     const result = action.payload;
                     return { isLoggedIn: true, userID: result.username, role: result.role};
                 }
                 return {...state, loginStatus: action.payload.status};
+            })
+            .addCase(registerPost.fulfilled, (state, action)=>{
+                return action
+            })
+            .addCase(checkUsernamePost.fulfilled, (state, action)=>{
+                return action
             })
     }
 })

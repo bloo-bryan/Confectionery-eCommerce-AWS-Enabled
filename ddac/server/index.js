@@ -126,10 +126,10 @@ app.get('/single-order/:oid', (req, res) => {
 
 
 app.post('/login',(req, res)=>{
-    console.log('Login requested')
+    console.log('Login requested');
     var result;
-    const q = 'SELECT * FROM ddac.User WHERE username = ?'
-    const values = [req.body.username]
+    const q = 'SELECT * FROM ddac.User WHERE username = ?';
+    const values = [req.body.username];
     db.query(q, values, (err, data) => {
         if(err) {
             console.log(err);
@@ -143,7 +143,7 @@ app.post('/login',(req, res)=>{
                     role: data[0].role,
                 }
             }else{
-                result = {status: 'wrong password'}
+                result = {status: 'wrong password'};
             }
         }else{
             result = {status: 'user not found'};
@@ -152,37 +152,46 @@ app.post('/login',(req, res)=>{
     })
 })
 
-app.post('/checkUser', (req,res)=>{
-    const { username } = req.body
-    const checkName = "SELECT * FROM ddac.User WHERE username = ?"
+app.post('/checkUsername', (req,res)=>{
+    const { username } = req.body;
+    const checkName = "SELECT * FROM ddac.User WHERE username = ?";
     db.query(checkName, username,(err, data)=>{
         if(err) return res.json(err);
         if(data[0] != null){
-            console.log("username taken")
-            return res.send({status: 'Username is taken!'})
+            return res.send({status: 'invalid'});
         }else{
-            return res.send({status: 'Username is valid!'})
+            return res.send({status: 'valid'});
         }
     })
 })
 
 app.post('/register', (req,res)=>{
     console.log(req.body)
-    const insertUser = "INSERT INTO ddac.User SET username = ?, password = ?, role = ?"
-    const userData = [username, password, role]
-    db.query(insertUser, userData, (err, data) => {
+    const { username, password, role, mobile } = req.body;
+    const insertUser = "INSERT INTO ddac.User SET username = ?, password = ?, role = ?";
+    const userData = [username, password, role];
+    db.query(insertUser, userData, (err, result) => {
         if(err) return res.json(err);
-        console.log(data);
+        const user_id = result.insertId;
+        let affectedRow = result.affectedRows;
+        var insertRole, roleData;
+        switch (role){
+            case 'customer':
+                insertRole = "INSERT INTO ddac.CustomerDetail SET user_id = ?, name = ?, mobile = ?, shipping = ?, state = ?";
+                const { shipping, state } = req.body;
+                roleData = [ user_id, username, mobile, shipping, state];
+                break;
+            case 'merchant':
+                insertRole = "INSERT INTO ddac.MerchantDetail SET user_id = ?, name = ?, mobile = ?";
+                roleData = [ user_id, username, mobile];
+                break;
+        }
+        db.query(insertRole, roleData, (err, result) => {
+        if(err) return res.json(err);
+        affectedRow += result.affectedRows;
+        return res.send({status: 'done', affectedRows: affectedRow});
+        })
     })
-    switch (role){
-        case 'customer':
-            const insertCustomer = "INSERT INTO ddac.CustomerDetail SET"
-            break;
-        case 'merchant':
-            
-            break;
-    }
-    
 })
 
 app.post('/add-product', (req, res) => {
