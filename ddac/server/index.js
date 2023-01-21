@@ -8,11 +8,6 @@ import sharp from "sharp";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import Stripe from 'stripe';
 import path from 'path';
-import {
-    SecretsManagerClient,
-    GetSecretValueCommand,
-} from "@aws-sdk/client-secrets-manager";
-
 
 const _dirname = path.dirname("")
 const buildPath = path.join(_dirname, "../client/build")
@@ -31,23 +26,6 @@ const stripe = new Stripe('sk_test_51MReqiBcfCWP6dm5BP6Unr0FS4kOwdvXQaLgOsqVaEbK
 
 const randomImageName = (bytes = 32) => crypto.randomBytes(bytes).toString('hex')
 
-const secret_name = "ddacs3";
-const client = new SecretsManagerClient({
-    region: "us-east-1",
-});
-let response;
-try {
-    response = await client.send(
-        new GetSecretValueCommand({
-            SecretId: secret_name,
-            VersionStage: "AWSCURRENT", // VersionStage defaults to AWSCURRENT if unspecified
-        })
-    );
-} catch (error) {
-    throw error;
-}
-const secret = response.SecretString;
-
 const db = mysql.createConnection({
     host: "ddac.c0keakeayjci.us-east-1.rds.amazonaws.com",
     user: "admin",
@@ -57,12 +35,13 @@ const db = mysql.createConnection({
 
 const s3 = new S3Client({
     credentials: {
-        accessKeyId: secret.accessKeyId,
-        secretAccessKey: secret.secretAccessKey,
-        sessionToken: secret.sessionToken
+        accessKeyId: 'ASIAVN2QEUHZ4XBOOMVM',
+        secretAccessKey: '3NElFUUWeLdOB/hDjFZfa3h+l105BE80kBnHk69R',
+        sessionToken: 'FwoGZXIvYXdzEFMaDBUdGXscxwsi4Tko4SLJAZJVv1+wbkr4DvGT+DweCP+jnd65oplS05f48Qml5x0qF6KLX7MZCbOKiMQwBVqQNNiCYwYnS/SD60dZ1aLsWzJQ6azL6eO3zVSSuiQnNK7IgcHn3Hf566ncRXnbobea/uqlPoHseeOgVuR2ufEkuRvevS/Zcp3DkFymiR98jbF8hoeUJElYBxPKPKAiUdrAXpyFo3jwd7n/eFgiFXMATWQ3Ir2SFTb/yN1WcT9hoSEHIRPffWDJjgIIDEMp6gR35IETWiwDYo0mKSj6t7CeBjItWDEosyO3YMB1anuzn/gnPneVuXz61q/op6zFd4lDbqpklDhxP/AwAAoSGWmX'
     },
     region: 'us-east-1'
 })
+
 
 // ROUTES: app.get, app.post, app.put, etc.
 app.get("/", function(req, res) {
