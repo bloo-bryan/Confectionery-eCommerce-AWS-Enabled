@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
-const LOGIN_URL = 'http://localhost:8800/login';
+const LOGIN_URL = '/login';
 
 const getLoginLocalStorage = () => {
     let item = localStorage.getItem('isLoggedIn')
@@ -42,7 +42,7 @@ export const loginPost = createAsyncThunk('login',async (loginCredential)=>{
 
 export const checkUsernamePost = createAsyncThunk('checkUsername',async(username)=>{
     try{
-        const response = await axios.post('http://localhost:8800/checkUsername',{
+        const response = await axios.post('/checkUsername',{
             username : username,
         })
         return response.data;
@@ -53,7 +53,7 @@ export const checkUsernamePost = createAsyncThunk('checkUsername',async(username
 
 export const registerPost = createAsyncThunk('register',async(registrationData)=>{
     try{
-        const response = await axios.post('http://localhost:8800/register',{
+        const response = await axios.post('/register',{
             ...registrationData
         })
         return response.data;

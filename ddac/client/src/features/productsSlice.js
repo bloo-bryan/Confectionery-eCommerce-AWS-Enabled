@@ -15,7 +15,7 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async(_, thunkAPI) => {
     try {
-        const response = await axios.get("http://localhost:8800/all-products")
+        const response = await axios.get("/all-products")
         return response.data
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -24,8 +24,8 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async(_,
 
 export const fetchSingleProduct = createAsyncThunk('products/fetchSingleProduct', async(pid, thunkAPI) => {
     try {
-        const detailRes = await axios.get(`http://localhost:8800/single-product/${pid}`)
-        const imagesRes = await axios.get(`http://localhost:8800/product-images/${pid}`)
+        const detailRes = await axios.get(`/single-product/${pid}`)
+        const imagesRes = await axios.get(`/product-images/${pid}`)
         const res = detailRes.data[0];
         res['url'] = imagesRes.data.map((img) => img.url)
         console.log(res)

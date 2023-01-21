@@ -50,7 +50,7 @@ const CheckoutForm = () => {
   const createPaymentIntent = async () => {
     try {
       const { data } = await axios.post(
-          'http://localhost:8800/payment', { cart, shipping_fee, total_amount }
+          '/payment', { cart, shipping_fee, total_amount }
       )
 
       setClientSecret(data.clientSecret)
@@ -68,7 +68,7 @@ const CheckoutForm = () => {
     try {
       for (let item of cart) {
         const quantity = item.amount
-        await axios.put(`http://localhost:8800/update-quantity/${item.id}`, {quantity})
+        await axios.put(`/update-quantity/${item.id}`, {quantity})
       }
     } catch (error) {
       console.log(error)

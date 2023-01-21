@@ -33,7 +33,7 @@ const initialState = {
 export const fetchProducts = createAsyncThunk('adminProduct/fetchProducts', async(_, thunkAPI) => {
     try {
         // TODO: GET MERCHANT ID FROM USER STATE
-        const response = await axios.get(`http://localhost:8800/all-products/${1}`)
+        const response = await axios.get(`/all-products/${1}`)
         return response.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -42,7 +42,7 @@ export const fetchProducts = createAsyncThunk('adminProduct/fetchProducts', asyn
 
 export const fetchProductDetails = createAsyncThunk('adminProduct/fetchProductDetails', async(pid, thunkAPI) => {
     try {
-        const response = await axios.get(`http://localhost:8800/single-product/${pid}`)
+        const response = await axios.get(`/single-product/${pid}`)
         return response.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -51,7 +51,7 @@ export const fetchProductDetails = createAsyncThunk('adminProduct/fetchProductDe
 
 export const fetchProductImages = createAsyncThunk('adminProduct/fetchProductImages', async(pid, thunkAPI) => {
     try {
-        const response = await axios.get(`http://localhost:8800/product-images/${pid}`)
+        const response = await axios.get(`/product-images/${pid}`)
         return response.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -61,7 +61,7 @@ export const fetchProductImages = createAsyncThunk('adminProduct/fetchProductIma
 // Note: this function is only used when editing existing product, not adding new product
 export const addProductImages = createAsyncThunk('adminProduct/addProductImages', async(formData, thunkAPI) => {
     try {
-        const imgRes = await axios.post('http://localhost:8800/upload-img', formData)   //form-data http
+        const imgRes = await axios.post('/upload-img', formData)   //form-data http
         return imgRes.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -72,10 +72,10 @@ export const addProduct = createAsyncThunk('adminProduct/addProduct', async(form
     try {
         const {products, currentProductDetails: {name, description, SKU, brand, price, quantity, category}} = thunkAPI.getState().adminProduct;
         const merchant_id = 1 //products[0]['merchant_id']  // TODO: GET THIS FROM CURRENT MERCHANT STATE
-        const productRes = await axios.post(`http://localhost:8800/add-product`, {merchant_id, name, description, SKU, brand, price, quantity, category})
+        const productRes = await axios.post(`/add-product`, {merchant_id, name, description, SKU, brand, price, quantity, category})
         const insertId = productRes.data.insertId;
         formData.append("pid", insertId);
-        const imgRes = await axios.post('http://localhost:8800/upload-img', formData)   //form-data http
+        const imgRes = await axios.post('/upload-img', formData)   //form-data http
         return imgRes.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -86,7 +86,7 @@ export const updateProductDetails = createAsyncThunk('adminProduct/updateProduct
     try {
         const {products, currentProductDetails: {product_id, name, description, SKU, brand, price, quantity, category}} = thunkAPI.getState().adminProduct;
         const merchant_id = products[0]['merchant_id']
-        const response = await axios.put(`http://localhost:8800/update-product/${product_id}`, {merchant_id, name, description, SKU, brand, price, quantity, category})
+        const response = await axios.put(`/update-product/${product_id}`, {merchant_id, name, description, SKU, brand, price, quantity, category})
         return response.data
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -95,7 +95,7 @@ export const updateProductDetails = createAsyncThunk('adminProduct/updateProduct
 
 // export const fetchProducts = createAsyncThunk('adminProduct/fetchProducts', async(_, thunkAPI) => {
 //     try {
-//         const response = await axios.get('http://localhost:8800/images')
+//         const response = await axios.get('/images')
 //         return response.data;
 //     } catch(error) {
 //         thunkAPI.rejectWithValue(error.message);
@@ -104,7 +104,7 @@ export const updateProductDetails = createAsyncThunk('adminProduct/updateProduct
 
 export const removeProductImage = createAsyncThunk('adminProduct/removeProductImage', async(id, thunkAPI) => {
     try {
-        const response = await axios.delete(`http://localhost:8800/images/${id}`)
+        const response = await axios.delete(`/images/${id}`)
         return response.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -113,7 +113,7 @@ export const removeProductImage = createAsyncThunk('adminProduct/removeProductIm
 
 export const removeProduct = createAsyncThunk('adminProduct/removeProduct', async(id, thunkAPI) => {
     try {
-        const response = await axios.delete(`http://localhost:8800/remove-product/${id}`)
+        const response = await axios.delete(`/remove-product/${id}`)
         return response.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
