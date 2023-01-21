@@ -7,9 +7,14 @@ import crypto from "crypto";
 import sharp from "sharp";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import Stripe from 'stripe';
+import path from 'path';
+
+const _dirname = path.dirname("")
+const buildPath = path.join(_dirname, "../client/build")
 
 const app = express();
 
+app.use(express.static(buildPath))
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(cors());
@@ -37,7 +42,19 @@ const s3 = new S3Client({
     region: 'us-east-1'
 })
 
+
 // ROUTES: app.get, app.post, app.put, etc.
+app.get("/", function(req, res) {
+    res.sendFile(
+        path.join(__dirname, "../client/build/index.html"),
+        function(err) {
+            if(err) {
+                res.status(500).send(err);
+            }
+        }
+    )
+})
+
 app.get('/product-images/:pid', (req, res) => {
     const productId = req.params.pid;
     const q = "SELECT * FROM ProductDetail pd WHERE pd.product_id = ?";

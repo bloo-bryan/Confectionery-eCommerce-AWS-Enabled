@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +100,7 @@
       <workItem from="1674186276493" duration="661000" />
       <workItem from="1674193348536" duration="430000" />
       <workItem from="1674211658431" duration="30000" />
-      <workItem from="1674296245450" duration="1340000" />
+      <workItem from="1674296245450" duration="2994000" />
     </task>
     <servers />
   </component>
