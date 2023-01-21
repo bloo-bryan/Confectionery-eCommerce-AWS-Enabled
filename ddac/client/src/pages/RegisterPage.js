@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { hideLoginPopUp, registerPost, checkUsernamePost } from '../features/userSlice';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -13,8 +13,7 @@ const RegisterPage = ()=>{
     const [showNotification, setShowNotification] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    dispatch(hideLoginPopUp());
-    var tempPassword;
+    let tempPassword;
 
     const validatePassword = (password_1, password_2)=>{
         if(password_1 === password_2){
@@ -75,6 +74,11 @@ const RegisterPage = ()=>{
         navigate("/");
     }
 
+    useEffect(() => {
+        dispatch(hideLoginPopUp());
+    }, []);
+
+
     return(
         <>
         <Form onSubmit={handleSubmit}>
@@ -94,7 +98,7 @@ const RegisterPage = ()=>{
                 {passwordValid ? (<p></p>):(<p>The password is not same, please re-enter the password</p>)}
             </Form.Group>
             <Form.Group>
-            <Form.Label>What role are you register for?</Form.Label>
+            <Form.Label>Registering as customer or merchant?</Form.Label>
                 <Form.Select aria-label="What role are you register for?" onChange={ (event)=>setRole(event.target.value) }>
                     <option value='customer'>Customer</option>
                     <option value='merchant'>Merchant</option>
@@ -105,11 +109,11 @@ const RegisterPage = ()=>{
                 <Form.Group>
                     <Form.Label>Mobile number</Form.Label>
                     <Form.Control type='phone-number' placeholder='Enter your mobile number' />
-                    <Form.Label>Shipping Adress</Form.Label>
+                    <Form.Label>Shipping address</Form.Label>
                     <Form.Control type='address' placeholder='Enter your shipping address' />
                     <Form.Label>State</Form.Label>
                     <Form.Select aria-label="state">
-                        <option value='kuala_lumpur'>Kuala Lumpur</option>
+                        <option value='kuala-lumpur'>Kuala Lumpur</option>
                         <option value='johor'>Johor</option>
                         <option value='kedah'>Kedah</option>
                         <option value='kelantan'>Kelantan</option>
@@ -136,7 +140,7 @@ const RegisterPage = ()=>{
             </Button>
         </Form>
         <Modal show={showNotification} onHide={closeNotification}>
-            <Modal.Body>Congratulation, you have succesfully register as a {role}!</Modal.Body>
+            <Modal.Body>Congratulations, you have successfully registered as a {role}!</Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={closeNotification}>
                 Ok
