@@ -51,6 +51,18 @@ export const checkUsernamePost = createAsyncThunk('checkUsername',async(username
     }
 })
 
+export const checkEmailPost = createAsyncThunk('checkEmail',async(email, role)=>{
+    try{
+        const response = await axios.post('/checkEmail',{
+            email : email,
+            role: role,
+        })
+        return response.data;
+    }catch (err) {
+        return err.message;
+    }
+})
+
 export const registerPost = createAsyncThunk('register',async(registrationData)=>{
     try{
         const response = await axios.post('/register',{

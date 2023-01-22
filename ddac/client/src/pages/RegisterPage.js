@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 const RegisterPage = ()=>{
     const [passwordValid, setPasswordValid] = useState(true);
     const [usernameValid, setUsernameValid] = useState(true);
+    const [email, setEmail] = useState(false);
+    const [emailValid, setEmailValid] = useState(true);
     const [role, setRole] = useState('customer');
     const [showNotification, setShowNotification] = useState(false);
     const dispatch = useDispatch();
@@ -41,6 +43,12 @@ const RegisterPage = ()=>{
         console.log(response.payload.status)
         if (response.payload.status === "invalid"){
             setUsernameValid(false);
+            return;
+        }
+        const responseEm = await dispatch(checkEmailPost(email, role));
+        console.log(responseEm.payload.status)
+        if (responseEm.payload.status === "invalid") {
+            setEmailValid(false);
             return;
         }
         let registrationData = {};
@@ -78,6 +86,12 @@ const RegisterPage = ()=>{
     useEffect(() => {
         dispatch(hideLoginPopUp());
     }, []);
+    
+
+    const handleChangeEmail = (e) => {
+        setEmail(e.target.value)
+        setEmailValid(true)
+    }
 
 
     return(
@@ -141,7 +155,12 @@ const RegisterPage = ()=>{
                     <Form.Label>Mobile Number</Form.Label>
                     <Form.Control type='phone-number' placeholder='Enter your mobile number' />
                 </Form.Group>
-            )}
+            )}            
+            <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="text" placeholder="Enter email" onChange={handleChangeEmail} />
+                {emailValid ? (<p></p>) : (<p>This email has been taken, please try another email</p>)}
+            </Form.Group>
             <Button variant="primary" type="submit" className='register-button'>
                 Register
             </Button>
