@@ -6,6 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/css/main.29162162.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/css/main.29162162.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.ea7f231b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.ea7f231b.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.ea7f231b.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/media/hero-bcg-2.789918645915c8acb36f.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/media/hero-bcg.a876f19f6786a3aca992.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/media/logo.221f6b13e6eaaad5828372464f73a1a4.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/productsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/productsSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/utils/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/utils/axios.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +116,7 @@
       <workItem from="1674211658431" duration="30000" />
       <workItem from="1674296245450" duration="14535000" />
       <workItem from="1674322546839" duration="276000" />
-      <workItem from="1674360871518" duration="3134000" />
+      <workItem from="1674360871518" duration="4153000" />
     </task>
     <servers />
   </component>
