@@ -15,12 +15,11 @@ const AboutPage = () => {
                         <div className='underline'></div>
                     </div>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                        quaerat, modi doloremque necessitatibus eum dolor nesciunt delectus,
-                        voluptate blanditiis, obcaecati beatae ab aut ipsa consequuntur
-                        tempora cumque. Ut quo enim vero odio minus nostrum eveniet,
-                        doloribus veritatis dolorem unde ipsum, voluptatibus totam.
-                        Explicabo, quas libero! Laborum incidunt minima consequatur ratione?
+                        We are a dedicated group of programmers and designers who have worked tirelessly to bring our unique vision to life. 
+                        This platform offers a wide variety of delicious treats for customers to choose from, all available for purchase at the click of a button. 
+                        From hand-crafted chocolates to homemade fudge and truffles, there's something for everyone. 
+                        The team's passion for confectionery is evident in every aspect of their platform, from the user-friendly design to the seamless online shopping experience. 
+                        With this platform, indulging in sweet treats has never been easier or more enjoyable.
                     </p>
                 </article>
             </Wrapper>
