@@ -15,6 +15,11 @@ const AboutPage = () => {
                         <div className='underline'></div>
                     </div>
                     <p>
+                        We are a dedicated group of programmers and designers who have worked tirelessly to bring our unique vision to life.
+                        This platform offers a wide variety of delicious treats for customers to choose from, all available for purchase at the click of a button.
+                        From hand-crafted chocolates to homemade fudge and truffles, there's something for everyone.
+                        The team's passion for confectionery is evident in every aspect of their platform, from the user-friendly design to the seamless online shopping experience.
+                        With this platform, indulging in sweet treats has never been easier or more enjoyable.
                     </p>
                 </article>
             </Wrapper>

@@ -4,43 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ddac/client/src/assets/hero-bcg-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ddac/client/src/assets/hero-bcg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ddac/client/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ddac/client/src/pages/AdminRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.887f74d3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.887f74d3.js.LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.887f74d3.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/media/hero-bcg-2.789918645915c8acb36f.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/media/hero-bcg.a876f19f6786a3aca992.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/media/logo.221f6b13e6eaaad5828372464f73a1a4.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/assets/hero-bcg-2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/assets/hero-bcg.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/assets/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/AddToCart.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/AddToCart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/AdminNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/AdminNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/CartButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/CartButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/CartTotals.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/CartTotals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/FeaturedProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/FeaturedProducts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/Hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/Hero.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/LoginPopUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/LoginPopUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/Services.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/Services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/productsSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/productsSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/AboutPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/HomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/PrivateRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/utils/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/utils/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +100,7 @@
       <workItem from="1674211658431" duration="30000" />
       <workItem from="1674296245450" duration="14535000" />
       <workItem from="1674322546839" duration="276000" />
-      <workItem from="1674360871518" duration="23944000" />
+      <workItem from="1674360871518" duration="24306000" />
     </task>
     <servers />
   </component>
