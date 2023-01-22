@@ -7,7 +7,7 @@ import {
   Elements,
   useElements,
 } from '@stripe/react-stripe-js'
-import axios from 'axios'
+import customFetch from '../utils/axios'
 import { formatPrice } from '../utils/helpers'
 import { useNavigate} from 'react-router-dom'
 import {clearCart} from "../features/cartSlice";
@@ -49,7 +49,7 @@ const CheckoutForm = () => {
 
   const createPaymentIntent = async () => {
     try {
-      const { data } = await axios.post(
+      const { data } = await customFetch.post(
           '/payment', { cart, shipping_fee, total_amount }
       )
 
@@ -68,7 +68,7 @@ const CheckoutForm = () => {
     try {
       for (let item of cart) {
         const quantity = item.amount
-        await axios.put(`/update-quantity/${item.id}`, {quantity})
+        await customFetch.put(`/update-quantity/${item.id}`, {quantity})
       }
     } catch (error) {
       console.log(error)
