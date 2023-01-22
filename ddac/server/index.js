@@ -384,6 +384,11 @@ app.put('/update-quantity/:pid', (req, res) => {
     })
 })
 
+db.connect((err) => {
+    if (err) throw err;
+    console.log("Connected to MYSQL")
+})
+
 app.listen(8800, () => {
-    console.log("Connected to backend!")
+    console.log("Connected to backend! Port ", 8800)
 })
