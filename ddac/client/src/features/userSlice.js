@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import customFetch from "../utils/axios";
+import axios from "axios";
 
 const LOGIN_URL = '/login';
 
@@ -30,7 +30,7 @@ const initialState = {
 
 export const loginPost = createAsyncThunk('login',async (loginCredential)=>{
     try{
-        const response = await customFetch.post(LOGIN_URL,{
+        const response = await axios.post(LOGIN_URL,{
             username: loginCredential.username,
             password: loginCredential.password,
         })
@@ -42,7 +42,7 @@ export const loginPost = createAsyncThunk('login',async (loginCredential)=>{
 
 export const checkUsernamePost = createAsyncThunk('checkUsername',async(username)=>{
     try{
-        const response = await customFetch.post('/checkUsername',{
+        const response = await axios.post('/checkUsername',{
             username : username,
         })
         return response.data;
@@ -53,7 +53,7 @@ export const checkUsernamePost = createAsyncThunk('checkUsername',async(username
 
 export const registerPost = createAsyncThunk('register',async(registrationData)=>{
     try{
-        const response = await customFetch.post('/register',{
+        const response = await axios.post('/register',{
             ...registrationData
         })
         return response.data;
