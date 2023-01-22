@@ -90,11 +90,13 @@ const userSlice = createSlice({
             .addCase(loginPost.fulfilled, (state, action)=>{
                 if (action.payload.status === 'logged in'){
                     const result = action.payload;
-                    var tempUser;
+                    let tempUser;
                     switch (result.role){
                         case 'customer':
                             tempUser = {
-                                name: result.username,
+                                userId: result.id,
+                                name: result.name,
+                                username: result.username,
                                 role: result.role,
                                 mobile: result.mobile,
                                 shipping: result.shipping,
@@ -103,7 +105,9 @@ const userSlice = createSlice({
                             break;
                         case 'merchant':
                             tempUser = {
-                                name: result.username,
+                                userId: result.id,
+                                name: result.name,
+                                username: result.username,
                                 role: result.role,
                                 mobile: result.mobile,
                             }
@@ -112,7 +116,7 @@ const userSlice = createSlice({
                             tempUser = null;
                             break;
                     }
-                    return { isLoggedIn: true, userID: result.username, userDetails: tempUser};
+                    return { isLoggedIn: true, userDetails: tempUser};
                 }
                 return {...state, loginStatus: action.payload.status};
             })

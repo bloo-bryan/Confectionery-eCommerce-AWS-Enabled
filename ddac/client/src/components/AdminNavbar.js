@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import {Typography} from "@mui/material";
+import {useSelector} from "react-redux";
 
 const AdminNavbar = () => {
+    const {isLoggedIn, userDetails} = useSelector((store) => store.user)
     return (
             <Wrapper>
                 <div className="wrapper">
@@ -9,7 +11,7 @@ const AdminNavbar = () => {
                     </div>
                     <div className="items">
                         <div className="item">
-                            <Typography variant="subtitle1">merchant name</Typography>
+                            {isLoggedIn && <Typography variant="subtitle1">{userDetails.name}</Typography>}
                         </div>
                         <div className="item">
                             <img

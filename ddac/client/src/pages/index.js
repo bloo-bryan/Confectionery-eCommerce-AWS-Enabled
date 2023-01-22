@@ -13,6 +13,7 @@ import OrderDetailPage from "./OrderDetailPage";
 import ManageProductPage from "./ManageProductPage";
 import ProductDetailPage from "./ProductDetailPage";
 import RegisterPage from "./RegisterPage";
+import AdminRoute from "./AdminRoute";
 
 export {
     Home,
@@ -29,5 +30,6 @@ export {
     OrderDetailPage,
     ManageProductPage,
     ProductDetailPage,
-    RegisterPage
+    RegisterPage,
+    AdminRoute
 }

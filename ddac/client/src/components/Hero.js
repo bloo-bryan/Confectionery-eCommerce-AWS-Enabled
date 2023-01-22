@@ -1,25 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import heroBcg from '../assets/hero-bcg.jpeg'
-import heroBcg2 from '../assets/hero-bcg-2.jpeg'
+import heroBcg from '../assets/hero-bcg.jpg'
+import heroBcg2 from '../assets/hero-bcg-2.jpg'
+import {Link} from "react-router-dom";
 
 const Hero = () => {
   return (
     <Wrapper className='section-center'>
       <article className='content'>
         <h1>
-          Shop your <br />
-          favourite sweets
+          Satisfy your <br />
+          sweet cravings
         </h1>
         <p>
-          Welcome to chocolate.com, we sells your favourite confectionery and chocolate from the shops all over malaysia.
+          Discover a wide range of delicious confectioneries from small businesses all over Malaysia, all in one convenient online destination. Shop with ease and have your treats delivered right to your door with our user-friendly platform.
         </p>
+          <Link to='/products' className='btn hero-btn'>
+              shop now
+          </Link>
       </article>
-      {/* <article className='img-container'>
+      <article className='img-container'>
         <img src={heroBcg} alt='nice table' className='main-img' />
         <img src={heroBcg2} alt='person working' className='accent-img' />
-      </article> */}
+      </article>
     </Wrapper>
   )
 }

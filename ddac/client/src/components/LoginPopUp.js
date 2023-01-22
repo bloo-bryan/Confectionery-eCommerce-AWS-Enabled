@@ -3,12 +3,13 @@ import styled from 'styled-components'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { hideLoginPopUp, loginPost } from '../features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const LoginPopUp = (props)=>{
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { showPopUp, loginStatus } = useSelector((store) => store.user);
 
     const handleSubmit = async (event)=>{
@@ -20,6 +21,7 @@ const LoginPopUp = (props)=>{
         const response = await dispatch(loginPost(loginCredential));
         if (response.payload.status === "logged in"){
             dispatch(hideLoginPopUp());
+            if(response.payload.role === "merchant") navigate("/")
         }
         //todos: reroute user to correct pages
     }

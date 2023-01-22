@@ -7,10 +7,12 @@ const initialState = {
     products_loading: false,
     products_error: false,
     products: [],
-    featured_products: [],
     single_product_loading: false,
     single_product_error: false,
     single_product: {},
+    featured_loading: false,
+    featured_error: false,
+    featured_products: []
 }
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async(_, thunkAPI) => {
@@ -35,6 +37,15 @@ export const fetchSingleProduct = createAsyncThunk('products/fetchSingleProduct'
     }
 })
 
+export const fetchFeaturedProducts = createAsyncThunk('products/fetchFeaturedProducts', async(_, thunkAPI) => {
+    try {
+        const response = await axios.get(`/featured-products`)
+        return response.data
+    } catch(error) {
+        thunkAPI.rejectWithValue(error.message);
+    }
+})
+
 const productsSlice = createSlice({
     name: 'products',
     initialState,
@@ -51,20 +62,31 @@ const productsSlice = createSlice({
             state.products_loading = true;
         },
         [fetchProducts.fulfilled]: (state, {payload}) => {
-            const featured_products = payload.filter(
-                (product) => product.featured === true
-            )
             return {
                 ...state,
                 products_loading: false,
                 products: payload,
-                featured_products,
             }
         },
         [fetchProducts.rejected]: (state, {payload}) => {
             console.log(payload);
             state.products_loading = false;
             state.products_error = true;
+        },
+        [fetchFeaturedProducts.pending]: (state) => {
+            state.featured_loading = true;
+        },
+        [fetchFeaturedProducts.fulfilled]: (state, {payload}) => {
+            return {
+                ...state,
+                featured_loading: false,
+                featured_products: payload,
+            }
+        },
+        [fetchFeaturedProducts.rejected]: (state, {payload}) => {
+            console.log(payload);
+            state.featured_loading = false;
+            state.featured_error = true;
         },
         [fetchSingleProduct.pending]: (state) => {
             state.single_product_loading = true;

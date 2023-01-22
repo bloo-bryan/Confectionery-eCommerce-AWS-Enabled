@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
 import AmountButtons from './AmountButtons'
 import {addToCart} from "../features/cartSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import button from "bootstrap/js/src/button";
 
 const AddToCart = ({ product }) => {
-  const { product_id, quantity } = product
+  const { product_id, quantity } = product;
   const dispatch = useDispatch();
-  const [amount, setAmount] = useState(1)
+  const [amount, setAmount] = useState(1);
+  const {isLoggedIn, userDetails} = useSelector((store) => store.user)
 
   const increase = () => {
     setAmount((oldAmount) => {
@@ -36,38 +38,23 @@ const AddToCart = ({ product }) => {
 
   return (
     <Wrapper>
-      <div className='colors'>
-        <span> colors : </span>
-        {/*<div>*/}
-        {/*  {colors.map((color, index) => {*/}
-        {/*    return (*/}
-        {/*      <button*/}
-        {/*        key={index}*/}
-        {/*        style={{ background: color }}*/}
-        {/*        className={`${*/}
-        {/*          mainColor === color ? 'color-btn active' : 'color-btn'*/}
-        {/*        }`}*/}
-        {/*        onClick={() => setMainColor(color)}*/}
-        {/*      >*/}
-        {/*        {mainColor === color ? <FaCheck /> : null}*/}
-        {/*      </button>*/}
-        {/*    )*/}
-        {/*  })}*/}
-        {/*</div>*/}
-      </div>
       <div className='btn-container'>
         <AmountButtons
           amount={amount}
           increase={increase}
           decrease={decrease}
         />
-        <Link
-          to='/cart'
-          className='btn'
-          onClick={() => addItem(product_id, amount, product)}
-        >
-          add to cart
-        </Link>
+        {isLoggedIn && userDetails.role === 'merchant' ?
+            <button disabled={true} className='btn'>add to cart</button> : (
+            <Link
+              to='/cart'
+              className='btn'
+              onClick={() => addItem(product_id, amount, product)}
+            >
+              add to cart
+            </Link>
+            )
+        }
       </div>
     </Wrapper>
   )

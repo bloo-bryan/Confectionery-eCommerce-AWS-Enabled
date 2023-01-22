@@ -1,24 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FeaturedProducts, Hero, Filters, ProductList, Sort } from '../components'
+import {FeaturedProducts, Hero, Filters, ProductList, Sort, Services} from '../components'
 const HomePage = () => {
     return (
         <main>
             <Hero />
             <FeaturedProducts />
-            <Wrapper className='page'>
-            <div className='title'>
-                <h2>All products</h2>
-                <div className='underline'></div>
-            </div>
-                <div className='section-center products'>
-                    <Filters />
-                    <div>
-                        <Sort />
-                        <ProductList />
-                    </div>
-                </div>
-            </Wrapper>
+            <Services/>
         </main>
     )
 }

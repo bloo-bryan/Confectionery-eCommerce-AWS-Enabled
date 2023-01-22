@@ -8,8 +8,8 @@ import {useSelector} from "react-redux";
 
 const FeaturedProducts = () => {
   const {
-    products_loading: loading,
-    products_error: error,
+    featured_loading: loading,
+    featured_error: error,
     featured_products: featured,
   } = useSelector((store) => store.products)
 
@@ -22,17 +22,17 @@ const FeaturedProducts = () => {
   return (
     <Wrapper className='section'>
       <div className='title'>
-        <h2>featured products</h2>
+        <h2>trending products 🔥</h2>
         <div className='underline'></div>
       </div>
       <div className='section-center featured'>
-        {featured.slice(0, 3).map((product) => {
-          return <Product key={product.id} {...product} />
+        {featured.map((product) => {
+          return <Product key={product.product_id} {...product} />
         })}
       </div>
-      {/* <Link to='/products' className='btn'>
-        all products
-      </Link> */}
+      <Link to='/products' className='btn'>
+        view all products
+      </Link>
     </Wrapper>
   )
 }

@@ -24,21 +24,21 @@ export const services = [
         icon: <GiCompass />,
         title: 'mission',
         text:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi',
+            'Our mission is to provide a one-stop-shop for confectionery businesses to set up and grow their online presence, and for customers to discover and enjoy a diverse selection of confectioneries from small businesses all over Malaysia.'
     },
     {
         id: 2,
         icon: <GiDiamondHard />,
         title: 'vision',
         text:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi',
+            'Our vision is to empower small confectionery businesses across Malaysia to reach customers nationwide, and to provide customers with easy access to a wide variety of delicious and high-quality confectioneries through an accessible, user-friendly and reliable online platform.',
     },
     {
         id: 3,
         icon: <GiStabbedNote />,
-        title: 'history',
+        title: 'partner with us',
         text:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi',
+            'Whether you\'re a small business just starting out or a well-established confectionery shop, we\'ve got you covered. With our platform, you can set up your online business all in one place and reach customers from all over Malaysia.',
     },
 ]
 

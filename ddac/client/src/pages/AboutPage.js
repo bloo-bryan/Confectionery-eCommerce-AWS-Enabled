@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { PageHero } from '../components'
-import aboutImg from '../assets/hero-bcg.jpeg'
+import aboutImg from '../assets/hero-bcg.jpg'
 
 const AboutPage = () => {
     return (
@@ -15,12 +15,9 @@ const AboutPage = () => {
                         <div className='underline'></div>
                     </div>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                        quaerat, modi doloremque necessitatibus eum dolor nesciunt delectus,
-                        voluptate blanditiis, obcaecati beatae ab aut ipsa consequuntur
-                        tempora cumque. Ut quo enim vero odio minus nostrum eveniet,
-                        doloribus veritatis dolorem unde ipsum, voluptatibus totam.
-                        Explicabo, quas libero! Laborum incidunt minima consequatur ratione?
+                        Introducing the ultimate destination for all your sweet cravings - our new online confectionery store! Whether you're in search of the perfect gift or just looking to indulge in some treats, we've got you covered. With a wide range of confectioneries from small businesses all over Malaysia, you can shop with ease and have your sweet treats delivered right to your door.
+                        We understand that shopping online can be overwhelming, that's why we've made it easy for you to find the perfect confectionery for any occasion. Our platform allows you to browse through a wide selection of chocolates, cand, and other sweets from local merchants. Plus, with the power of AWS cloud services, you can trust that your shopping experience will be seamless and reliable.
+                        We're committed to providing you with the best customer service, and our easy to use platform makes it simple for you to find, purchase and have your confectionery delivered to you. So, whether you're looking for a gift for a loved one, or just looking to treat yourself, our online confectionery store is the perfect destination. Shop now and discover the sweetest treats Malaysia has to offer!
                     </p>
                 </article>
             </Wrapper>

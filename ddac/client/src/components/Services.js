@@ -8,13 +8,13 @@ const Services = () => {
       <div className='section-center'>
         <article className='header'>
           <h3>
-            custom furniture <br />
-            built only for you
+            the best confectionery <br />
+            available in malaysia
           </h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-            quisquam saepe id reiciendis sunt, repudiandae libero amet rem quia
-            quod?
+            Introducing the ultimate destination for all your sweet cravings -
+            our new online confectionery store! Whether you're in search of the
+            perfect gift or just looking to indulge in some treats, we've got you covered.
           </p>
         </article>
         <div className='services-center'>

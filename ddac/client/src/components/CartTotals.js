@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import {showLoginPopUp} from "../features/userSlice";
 
 const CartTotals = () => {
   const { total_amount, shipping_fee } = useSelector((store) => store.cart)
-  // const { myUser, loginWithRedirect } = useSelector((store) => store.user)
+  const { isLoggedIn, userDetails } = useSelector((store) => store.user)
+  const dispatch = useDispatch();
 
   return (
     <Wrapper>
@@ -24,17 +26,14 @@ const CartTotals = () => {
             <span>RM {(total_amount + shipping_fee).toFixed(2)}</span>
           </h4>
         </article>
-        {/*{myUser ? (*/}
+        {isLoggedIn && userDetails.role === 'customer' ?
           <Link to='/checkout' className='btn'>
             proceed to checkout
-          </Link>
-        {/*) : (*/}
-          <button type='button' className='btn'
-                  // onClick={loginWithRedirect}
-          >
+          </Link> :
+          <button type='button' className='btn' onClick={() => dispatch(showLoginPopUp())}>
             login
           </button>
-        {/*)}*/}
+        }
       </div>
     </Wrapper>
   )

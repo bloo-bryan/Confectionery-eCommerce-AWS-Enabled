@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../assets/logo.svg'
+import logo from '../assets/logo.png'
 import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { links } from '../utils/constants'
@@ -10,14 +10,13 @@ import {useDispatch, useSelector} from "react-redux";
 
 const Nav = () => {
   const dispatch = useDispatch()
-  // const { myUser } = useSelector((store) => store.user)
+  const { isLoggedIn, userDetails } = useSelector((store) => store.user)
   return (
     <NavContainer>
       <div className='nav-center'>
         <div className='nav-header'>
           <Link to='/' className='text-link'>
-            Chocolate.com
-            {/* <img src={logo} alt='home page' /> */}
+             <img src={logo} alt='home page' />
           </Link>
           <button type='button' className='nav-toggle' onClick={() => dispatch(openSidebar())}>
             <FaBars />
@@ -32,14 +31,16 @@ const Nav = () => {
               </li>
             )
           })}
-          {/*{myUser && (*/}
+          {isLoggedIn && userDetails.role === 'customer' ? (
             <li>
               <Link to='/checkout' className='text-link'>checkout</Link>
             </li>
-          {/*)}*/}
-            <li>
-                <Link to='/admin/orders' className='text-link'>my store</Link>
-            </li>
+          ) : false}
+          {isLoggedIn && userDetails.role === 'merchant' ? (
+              <li>
+                  <Link to='/admin/orders' className='text-link'>my store</Link>
+              </li>
+          ) : false}
         </ul>
         <CartButtons />
       </div>

@@ -124,6 +124,22 @@ app.get('/all-products', (req, res) => {
     })
 })
 
+app.get('/featured-products', (req, res) => {
+    const q = "SELECT p.*, top_products.total_quantity, GROUP_CONCAT(pd.image_name) AS image FROM Product p JOIN (SELECT product_id, SUM(quantity) as total_quantity FROM OrderDetail GROUP BY product_id ORDER BY total_quantity DESC LIMIT 3) as top_products ON p.product_id = top_products.product_id JOIN ProductDetail pd ON p.product_id = pd.product_id GROUP BY top_products.product_id"
+    db.query(q, async (err, data) => {
+        if(err) return res.json(err);
+        for(let item of data) {
+            const getObjectParams = {
+                Bucket: 'ddac-s3',
+                Key: item.image.split(',')[0]
+            }
+            const command = new GetObjectCommand(getObjectParams);
+            item['image'] = await getSignedUrl(s3, command, {expiresIn: 3600})  //expiry in seconds
+        }
+        return res.json(data);
+    })
+})
+
 app.get('/single-order/:oid', (req, res) => {
     const orderId = req.params.oid;
     const q = "SELECT u.username, cd.name AS custName, cd.shipping AS address, cd.state, o.order_id, o.total, o.shipping, CONVERT_TZ(o.created_at, 'UTC', '+08:00') AS dateAdded, o.status, p.SKU, p.name, p.price, od.quantity, MIN(pd.image_name) AS image_name FROM `Order` o INNER JOIN CustomerDetail cd ON o.customer_id = cd.customer_id INNER JOIN `User` u ON u.user_id = cd.user_id INNER JOIN OrderDetail od ON o.order_id = od.order_id INNER JOIN Product p ON od.product_id = p.product_id INNER JOIN ProductDetail pd ON od.product_id = pd.product_id WHERE o.order_id = ? GROUP BY od.product_id"
@@ -144,22 +160,24 @@ app.get('/single-order/:oid', (req, res) => {
 
 app.post('/login',(req, res)=>{
     console.log('Login requested');
-    const q = 'SELECT * FROM ddac.User WHERE username = ?';
+    const q = 'SELECT * FROM User WHERE username = ?';
     const username = [req.body.username];
     db.query(q, username, (err, data) => {
         if(err) return res.json(err);
         if(data[0]){
             if(data[0].password != req.body.password) return res.send({status: 'wrong password'});
             const role = data[0].role;
-            var userQuery, result;
+            let userQuery, result;
             switch (role){
                 case 'customer':
-                    userQuery = 'SELECT * FROM ddac.CustomerDetail WHERE name = ?'
+                    userQuery = 'SELECT * FROM CustomerDetail cd INNER JOIN User u ON cd.user_id = u.user_id WHERE username = ?'
                     db.query(userQuery, username, (err,data) =>{
                         if(err) return res.json(err);
                         result = {
                             status: 'logged in',
-                            username: username,
+                            id: data[0].user_id,
+                            username: username[0],
+                            name: data[0].name,
                             role: role,
                             mobile: data[0].mobile,
                             shipping: data[0].shipping,
@@ -169,12 +187,14 @@ app.post('/login',(req, res)=>{
                     })
                     break;
                 case 'merchant': 
-                    userQuery = 'SELECT * FROM ddac.MerchantDetail WHERE name = ?'
+                    userQuery = 'SELECT * FROM MerchantDetail md INNER JOIN User u ON md.user_id = u.user_id WHERE username = ?'
                     db.query(userQuery, username, (err,data) =>{
                         if(err) return res.json(err);
                         result = {
                             status: 'logged in',
-                            username: username,
+                            id: data[0].user_id,
+                            username: username[0],
+                            name: data[0].name,
                             role: role,
                             mobile: data[0].mobile,
                         }
@@ -210,7 +230,7 @@ app.post('/register', (req,res)=>{
         if(err) return res.json(err);
         const user_id = result.insertId;
         let affectedRow = result.affectedRows;
-        var insertRole, roleData;
+        let insertRole, roleData;
         switch (role){
             case 'customer':
                 insertRole = "INSERT INTO ddac.CustomerDetail SET user_id = ?, name = ?, mobile = ?, shipping = ?, state = ?";

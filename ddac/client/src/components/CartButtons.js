@@ -11,8 +11,8 @@ import LogoutWarning from './LogoutWarning';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CartButtons = () => {
-  var greeting;
-  var login_logout;
+  let greeting;
+  let login_logout;
   const { total_items, cart } = useSelector((store) => store.cart);
   const { isLoggedIn, userDetails } = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -33,13 +33,14 @@ const CartButtons = () => {
   return (
     <Wrapper className='cart-btn-wrapper'>
       {greeting}
-      <Link to='/cart' className='cart-btn' onClick={() => dispatch(closeSidebar())}>
-        Cart
-        <span className='cart-container'>
-          <FaShoppingCart />
-          <span className='cart-value'>{total_items}</span>
-        </span>
-      </Link>
+      {!isLoggedIn || userDetails.role === 'customer' ?
+          <Link to='/cart' className='cart-btn' >
+            Cart
+            <span className='cart-container'>
+              <FaShoppingCart />
+              <span className='cart-value'>{total_items}</span>
+            </span>
+        </Link> : false}
       {login_logout}
       <LoginPopUp onHide={() => dispatch(hideLoginPopUp())}/>
       <LogoutWarning />
@@ -55,6 +56,7 @@ const Wrapper = styled.div`
 
   .greeting{
     color: var(--clr-grey-1);
+    margin-right: 2rem;
   }
   .cart-btn {
     text-decoration: none;
