@@ -221,6 +221,24 @@ app.post('/checkUsername', (req,res)=>{
     })
 })
 
+app.post('/checkEmail', (req, res) => {
+    const { email, role } = req.body;
+    let chkEmail = null;
+    if (role === 'customer') {
+        chkEmail = "select * from ddac.CustomerDetail where email = ?"
+    } else if (role === 'merchant') {
+        chkEmail = "select * from ddac.MerchantDetail where email = ?"
+    }
+    db.query(chkEmail, email, (err, data) => {
+        if (err) return res.json(err);
+        if (data[0] != null) {
+            return res.send({ status: 'invalid' });
+        } else {
+            return res.send({ status: 'valid' });
+        }
+    })
+})
+
 app.post('/register', (req,res)=>{
     console.log(req.body)
     const { username, password, role, mobile } = req.body;
