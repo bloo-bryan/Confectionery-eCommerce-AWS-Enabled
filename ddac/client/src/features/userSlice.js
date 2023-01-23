@@ -51,7 +51,7 @@ export const checkUsernamePost = createAsyncThunk('checkUsername',async(username
     }
 })
 
-export const checkEmailPost = createAsyncThunk('checkEmail',async(email, role)=>{
+export const checkEmailPost = createAsyncThunk('checkEmail',async({email, role})=>{
     try{
         const response = await axios.post('/checkEmail',{
             email : email,
@@ -136,6 +136,9 @@ const userSlice = createSlice({
                 return action
             })
             .addCase(checkUsernamePost.fulfilled, (state, action)=>{
+                return action
+            })
+            .addCase(checkEmailPost.fulfilled, (state, action)=>{
                 return action
             })
     }

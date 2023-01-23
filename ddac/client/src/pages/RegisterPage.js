@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import styled from 'styled-components'
-import { hideLoginPopUp, registerPost, checkUsernamePost } from '../features/userSlice';
+import { hideLoginPopUp, registerPost, checkUsernamePost, checkEmailPost } from '../features/userSlice';
 import {useEffect, useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
@@ -45,12 +45,14 @@ const RegisterPage = ()=>{
             setUsernameValid(false);
             return;
         }
-        const responseEm = await dispatch(checkEmailPost(email, role));
+        
+        const responseEm = await dispatch(checkEmailPost({email: email, role: role}));
         console.log(responseEm.payload.status)
         if (responseEm.payload.status === "invalid") {
             setEmailValid(false);
             return;
         }
+
         let registrationData = {};
         switch (role){
             case 'customer':
@@ -61,6 +63,7 @@ const RegisterPage = ()=>{
                     mobile: event.target[4].value,
                     shipping: event.target[5].value,
                     state: event.target[6].value,
+                    email: email
                 }
                 break;
             case 'merchant':
@@ -69,6 +72,7 @@ const RegisterPage = ()=>{
                     password: event.target[1].value,
                     role: event.target[3].value,
                     mobile: event.target[4].value,
+                    email: email,
                 }
                 break;
         }
