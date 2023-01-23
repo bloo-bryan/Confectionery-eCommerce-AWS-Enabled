@@ -8,6 +8,7 @@ import sharp from "sharp";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import Stripe from 'stripe';
 import path from 'path';
+import { sendMessage } from "./sqs-send.js";
 
 const _dirname = path.dirname("")
 const buildPath = path.join(_dirname, "../client/build")
@@ -241,7 +242,7 @@ app.post('/checkEmail', (req, res) => {
 
 app.post('/register', (req,res)=>{
     console.log(req.body)
-    const { username, password, role, mobile } = req.body;
+    const { username, password, role, mobile, email } = req.body;
     const insertUser = "INSERT INTO ddac.User SET username = ?, password = ?, role = ?";
     const userData = [username, password, role];
     db.query(insertUser, userData, (err, result) => {
@@ -251,18 +252,48 @@ app.post('/register', (req,res)=>{
         let insertRole, roleData;
         switch (role){
             case 'customer':
-                insertRole = "INSERT INTO ddac.CustomerDetail SET user_id = ?, name = ?, mobile = ?, shipping = ?, state = ?";
+                insertRole = "INSERT INTO ddac.CustomerDetail SET user_id = ?, name = ?, mobile = ?, shipping = ?, state = ?, email = ?";
                 const { shipping, state } = req.body;
-                roleData = [ user_id, username, mobile, shipping, state];
+                roleData = [ user_id, username, mobile, shipping, state, email];
                 break;
             case 'merchant':
-                insertRole = "INSERT INTO ddac.MerchantDetail SET user_id = ?, name = ?, mobile = ?";
-                roleData = [ user_id, username, mobile];
+                insertRole = "INSERT INTO ddac.MerchantDetail SET user_id = ?, name = ?, mobile = ?, email = ?";
+                roleData = [ user_id, username, mobile, email];
                 break;
         }
-        db.query(insertRole, roleData, (err, result) => {
+        db.query(insertRole, roleData, async (err, result) => {
         if(err) return res.json(err);
         affectedRow += result.affectedRows;
+
+        try {
+            const emailBody = {
+                to: email,
+                subject: 'DDAC Registration',
+                text: `Hi ${username}, your DDAC ${role} account succesfully registered`,
+                html: `
+                    <p>Hi <b>${username}</b>, your DDAC ${role} account succesfully registered, here is your detail account</p>
+                    <table>
+                    <tr>
+                        <td><strong>Username</strong></td>
+                        <td>${username}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobile</strong></td>
+                        <td>${mobile}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td>${email}</td>
+                    </tr>
+                    </table>
+                `
+            }
+            const data = await sendMessage(JSON.stringify(emailBody))
+            console.log(data)
+        } catch (err) {
+            console.log(err)
+        }
+
         return res.send({status: 'done', affectedRows: affectedRow});
         })
     })
@@ -409,4 +440,9 @@ db.connect((err) => {
 
 app.listen(8800, () => {
     console.log("Connected to backend! Port ", 8800)
+})
+
+app.post('/sendsqsmsg', async (req, res) => {
+    const data = await sendMessage(JSON.stringify(req.body))
+    return res.json(data)
 })

@@ -9,8 +9,8 @@ const sendMessage = async (msgBody) => {
     // Create an SQS service object
     // var sqs = new AWS.SQS({ apiVersion: '2012-11-05' });
 
-    const accountId = process.env.aws_sqs_account_id;
-    const queueName = process.env.aws_sqs_queue_name;
+    const accountId = process.env.aws_account_id;
+    const queueName = process.env.aws_queue_name;
     var params = {
         // Remove DelaySeconds parameter and value for FIFO queues
         // DelaySeconds: 10,
@@ -25,9 +25,9 @@ const sendMessage = async (msgBody) => {
     try {
         const command = await sqsClient.send(new SendMessageCommand(params));
         return command
-    } catch (err) {
+    } catch (error) {
         console.log("SQS Send Error", error);
-        return null;
+        return error;
     }
 }
 

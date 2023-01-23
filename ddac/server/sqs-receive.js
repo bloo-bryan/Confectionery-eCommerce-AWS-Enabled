@@ -3,8 +3,8 @@ import * as dotenv from 'dotenv';
 import { sqsClient } from './sqs-client.js';
 dotenv.config();
 
-const accountId = process.env.aws_sqs_account_id;
-const queueName = process.env.aws_sqs_queue_name;
+const accountId = process.env.aws_account_id;
+const queueName = process.env.aws_queue_name;
 var params = {
     QueueUrl: `https://sqs.us-east-1.amazonaws.com/${accountId}/${queueName}`,
     MaxNumberOfMessages: 10,
@@ -37,7 +37,7 @@ const receiveMessage = async () => {
     } catch (err) {
         console.log("SQS Receive error", err)
     }
-    return null
+    return []
 }
 
 export { receiveMessage }
