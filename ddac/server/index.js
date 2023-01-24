@@ -9,12 +9,14 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import Stripe from 'stripe';
 import path from 'path';
 import { sendMessage } from "./sqs-send.js";
+import AWSXRay from 'aws-xray-sdk';
 
 const _dirname = path.dirname("")
 const buildPath = path.join(_dirname, "../client/build")
 
 const app = express();
 
+app.use(AWSXRay.express.openSegment('MyApp'));
 app.use(express.static(buildPath))
 app.use(express.urlencoded());
 app.use(express.json());
@@ -45,17 +47,6 @@ const s3 = new S3Client({
 
 
 // ROUTES: app.get, app.post, app.put, etc.
-app.get("/", function(req, res) {
-    res.sendFile(
-        path.join(__dirname, "../client/build/index.html"),
-        function(err) {
-            if(err) {
-                res.status(500).send(err);
-            }
-        }
-    )
-})
-
 app.get('/product-images/:pid', (req, res) => {
     const productId = req.params.pid;
     const q = "SELECT * FROM ProductDetail pd WHERE pd.product_id = ?";
@@ -437,6 +428,20 @@ app.post('/sendsqsmsg', async (req, res) => {
     const data = await sendMessage(JSON.stringify(req.body))
     return res.json(data)
 })
+
+app.get("/", function(req, res) {
+    res.render('index');
+    res.sendFile(
+        path.join(__dirname, "../client/build/index.html"),
+        function(err) {
+            if(err) {
+                res.status(500).send(err);
+            }
+        }
+    )
+})
+
+app.use(AWSXRay.express.closeSegment());
 
 db.connect((err) => {
     if (err) throw err;

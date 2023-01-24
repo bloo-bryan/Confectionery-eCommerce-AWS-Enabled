@@ -7,19 +7,14 @@
     <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/logo192.png" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/logo192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/logo512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.2e0fbcf1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.2e0fbcf1.js.LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.2e0fbcf1.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/public/logo192.png" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/logo192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/public/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/logo512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.a53594fc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.a53594fc.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.a53594fc.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/S3TestPage.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +57,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ddac/client/public" />
       <recent name="$PROJECT_DIR$/ddac/client/src/assets" />
       <recent name="$PROJECT_DIR$/ddac/client/src/utils" />
       <recent name="$PROJECT_DIR$/client" />
