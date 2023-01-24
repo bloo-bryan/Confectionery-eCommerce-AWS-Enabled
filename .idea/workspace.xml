@@ -7,30 +7,19 @@
     <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/css/main.29162162.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/css/main.29162162.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.ecb2176a.js.LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.ecb2176a.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/logo192.png" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/logo192.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/logo512.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.2e0fbcf1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.2e0fbcf1.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.2e0fbcf1.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/LoginPopUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/LoginPopUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/ProductTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/ProductTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/StripeCheckout.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/StripeCheckout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/AdminRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/AdminRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/PrivateRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/ProductDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/ProductDetailPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/public/logo192.png" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/logo192.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/public/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/logo512.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +67,11 @@
       <recent name="$PROJECT_DIR$/client" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.npm start">
+  <component name="RunManager" selected="Node.js.email-worker.js">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="email-worker.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/ddac/server/email-worker.js" working-dir="$PROJECT_DIR$/ddac/server">
       <method v="2" />
     </configuration>
     <configuration name="npm start" type="js.build_tools.npm">
@@ -92,6 +84,11 @@
       <envs />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.email-worker.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

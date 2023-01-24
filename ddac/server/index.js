@@ -36,9 +36,9 @@ const db = mysql.createConnection({
 
 const s3 = new S3Client({
     credentials: {
-        accessKeyId: 'ASIAVN2QEUHZ3CMPTYON',
-        secretAccessKey: 'NE0wl4y6Cl/u2cMLgXgO6zM7ZlKoA0oDy444+6YL',
-        sessionToken: 'FwoGZXIvYXdzEJf//////////wEaDOZWo4yjcG/QclamxCLJAUpP5X37VzCtd19wZKVpZa1vCyBHSbnbpIMhuHPp0apYhxvC+Y2n8yVkYonQKbxvxnG7PpAOclHPO4QQXYwjpo1gkaQKd1+BRkzyTQZzWhsd53MxSf4JPborHq6K6AsjyIIva0UZ93cYIliR8jmmkPCWZIImyjkwU6ss2TsBzXybJQAALEpg2dT2STmbk01yqXw/d0bvL2a3nQ8fA7pMwIuShBN1hGhM2WLMA8Bv2904Ic0cf85TX6IvEBP+Lh0YzGLtjROdfPoEdSitsL+eBjItGN45YatMsEX8aWHSh8DoOJMRK77dtnFBeks8oY5trCjZXeT1Sg/jkUlKtn18'
+        accessKeyId: process.env.aws_access_key_id,
+        secretAccessKey: process.env.aws_secret_access_key,
+        sessionToken: process.env.aws_session_token
     },
     region: 'us-east-1'
 })
@@ -433,6 +433,11 @@ app.put('/update-quantity/:pid', (req, res) => {
     })
 })
 
+app.post('/sendsqsmsg', async (req, res) => {
+    const data = await sendMessage(JSON.stringify(req.body))
+    return res.json(data)
+})
+
 db.connect((err) => {
     if (err) throw err;
     console.log("Connected to MYSQL")
@@ -440,9 +445,4 @@ db.connect((err) => {
 
 app.listen(8800, () => {
     console.log("Connected to backend! Port ", 8800)
-})
-
-app.post('/sendsqsmsg', async (req, res) => {
-    const data = await sendMessage(JSON.stringify(req.body))
-    return res.json(data)
 })
