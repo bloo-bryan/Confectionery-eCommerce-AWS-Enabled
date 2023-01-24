@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.a53594fc.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.a53594fc.js.LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.a53594fc.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/S3TestPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
