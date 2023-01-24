@@ -33,7 +33,6 @@ const OrderDetailHeader = ({data}) => {
                                 <option value='shipped'>Shipped</option>
                                 <option value='delivered'>Delivered</option>
                             </select>
-                            {/*TODO: ADD TOAST FOR STATUS CHANGE SUCCESS*/}
                             <IconButton onClick={() => dispatch(updateOrderStatus({oid: data[0].order_id, status}))} sx={{ml: '1rem', color: 'white'}}><SaveIcon/></IconButton>
                         </div>
                     </div>

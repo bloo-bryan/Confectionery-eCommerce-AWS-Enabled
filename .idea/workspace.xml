@@ -4,7 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="" />
+    <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/css/main.29162162.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/css/main.29162162.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.ecb2176a.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.ecb2176a.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/LoginPopUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/LoginPopUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderDetailHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/ProductTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/ProductTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/StripeCheckout.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/StripeCheckout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/AdminRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/AdminRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/PrivateRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/ProductDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/ProductDetailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/client/src/pages/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/pages/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ddac/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/package-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +127,9 @@
       <workItem from="1674211658431" duration="30000" />
       <workItem from="1674296245450" duration="14535000" />
       <workItem from="1674322546839" duration="276000" />
-      <workItem from="1674360871518" duration="25003000" />
+      <workItem from="1674360871518" duration="27658000" />
+      <workItem from="1674464098923" duration="2403000" />
+      <workItem from="1674540206977" duration="3590000" />
     </task>
     <servers />
   </component>

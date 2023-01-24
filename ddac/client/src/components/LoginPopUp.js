@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import {Link, useNavigate} from 'react-router-dom'
 import { hideLoginPopUp, loginPost } from '../features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import {toast} from "react-toastify";
 
 const LoginPopUp = (props)=>{
     const dispatch = useDispatch();
@@ -23,7 +24,6 @@ const LoginPopUp = (props)=>{
             dispatch(hideLoginPopUp());
             if(response.payload.role === "merchant") navigate("/")
         }
-        //todos: reroute user to correct pages
     }
 
     return (

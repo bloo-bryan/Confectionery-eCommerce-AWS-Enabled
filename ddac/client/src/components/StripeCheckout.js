@@ -12,6 +12,7 @@ import { formatPrice } from '../utils/helpers'
 import { useNavigate} from 'react-router-dom'
 import {clearCart} from "../features/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
 
 const promise = loadStripe('pk_test_51MReqiBcfCWP6dm5gxptxfP2D34Q8TWaJdyUeljatTgKccYUX2psMtkNwo70N91rJbKJMmEPcoXcYilHJ0z0gSrt00yd098wkp')
 
@@ -49,7 +50,7 @@ const CheckoutForm = () => {
 
   const createPaymentIntent = async () => {
     try {
-      const { data } = await customFetch.post(
+      const { data } = await axios.post(
           '/payment', { cart, shipping_fee, total_amount }
       )
 
@@ -68,7 +69,7 @@ const CheckoutForm = () => {
     try {
       for (let item of cart) {
         const quantity = item.amount
-        await customFetch.put(`/update-quantity/${item.id}`, {quantity})
+        await axios.put(`/update-quantity/${item.id}`, {quantity})
       }
     } catch (error) {
       console.log(error)

@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const LOGIN_URL = '/login';
 
@@ -99,6 +100,18 @@ const userSlice = createSlice({
     },
     extraReducers(builder) {
         builder
+            .addCase(loginPost.pending, (state)=>{
+                toast.info('Logging in...', {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            })
             .addCase(loginPost.fulfilled, (state, action)=>{
                 if (action.payload.status === 'logged in'){
                     const result = action.payload;
@@ -128,9 +141,31 @@ const userSlice = createSlice({
                             tempUser = null;
                             break;
                     }
+                    toast.success('Login successful!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
                     return { isLoggedIn: true, userDetails: tempUser};
                 }
                 return {...state, loginStatus: action.payload.status};
+            })
+            .addCase(registerPost.pending, ()=>{
+                toast.info('Please wait...', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
             })
             .addCase(registerPost.fulfilled, (state, action)=>{
                 return action

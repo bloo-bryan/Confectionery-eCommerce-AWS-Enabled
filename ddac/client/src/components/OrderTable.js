@@ -69,27 +69,6 @@ const OrderTable = () => {
             <Wrapper>
                 <div className="datatableTitle">
                     Manage Orders
-                    {/*<Link to="/users/new" className="link">*/}
-                    {/*    Add New*/}
-                    {/*</Link>*/}
-                    <div className="search">
-                        <input type="text" placeholder="Search..." />
-                        <SearchOutlinedIcon />
-                    </div>
-                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                        <InputLabel id="status-select-small">Status</InputLabel>
-                        <Select
-                            labelId="status-select-small"
-                            id="status-select-small"
-                            // value={age}
-                            label="Status"
-                            // onChange={handleChange}
-                        >
-                            <MenuItem value={10}>Confirmed</MenuItem>
-                            <MenuItem value={20}>Shipped</MenuItem>
-                            <MenuItem value={30}>Delivered</MenuItem>
-                        </Select>
-                    </FormControl>
                 </div>
                 <DataGrid
                     className="datagrid"

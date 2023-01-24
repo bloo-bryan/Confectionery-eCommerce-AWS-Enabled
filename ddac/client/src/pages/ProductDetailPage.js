@@ -13,6 +13,7 @@ import {
     updateFields, updateProductDetails
 } from "../features/adminProductSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {toast} from "react-toastify";
 
 const ProductDetailPage = ({ title }) => {
     const [files, setFiles] = useState([]);
@@ -63,7 +64,6 @@ const ProductDetailPage = ({ title }) => {
 
     const submit = async (e) => {
         e.preventDefault();
-        // TODO: ADD TOAST - UPLOAD AT LEAST 1 IMAGE
         if(title && currentProductImages.length !== 0) {
             await dispatch(updateProductDetails());
             await dispatch(clearCurrentProduct());
@@ -78,6 +78,17 @@ const ProductDetailPage = ({ title }) => {
             setLoading(false);
             await dispatch(clearCurrentProduct());
             navigate('/admin/products')
+        } else {
+            toast.warn('You must upload at least 1 image!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
 
     }

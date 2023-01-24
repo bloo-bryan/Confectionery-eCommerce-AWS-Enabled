@@ -36,9 +36,9 @@ const db = mysql.createConnection({
 
 const s3 = new S3Client({
     credentials: {
-        accessKeyId: 'ASIAVN2QEUHZR5KNFYPW',
-        secretAccessKey: 'j15zatcEHknqeNU8eeKQP7T1SqJL7bophY1sutMm',
-        sessionToken: 'FwoGZXIvYXdzEGkaDAbZ5qhaWG79IEMiLiLJAagEv2RIdnVfP047GdisvtN7fc9F7CcLDu3uUbrhwkf3ur+iJBGB5/1gnksSao9J28Qa4dpIrV+JXxPt3yicKg/agPtLb1cMIlNdGTMr0aC9WNKglo2RdyJjseSwy9XWCWjIjwKWI04s9J6a1k1THBxGMa63kDkB68qitjnhRuMG5KB+SAcCIOsGLETVUgy9O7i4zA79WN0xGWJ6gtW4LnrjRQPckQHLB+wZQcTIq8sqf4OaAhWsFPMzUH4sDRUvGCZ4eMeTLfP71SjHqLWeBjItlvuzjHTN1qW97yyOd6jdjD1k8GT7Yr8u7fBOKNZRNZjaBXNuXfvItvqttzfT'
+        accessKeyId: 'ASIAVN2QEUHZ3CMPTYON',
+        secretAccessKey: 'NE0wl4y6Cl/u2cMLgXgO6zM7ZlKoA0oDy444+6YL',
+        sessionToken: 'FwoGZXIvYXdzEJf//////////wEaDOZWo4yjcG/QclamxCLJAUpP5X37VzCtd19wZKVpZa1vCyBHSbnbpIMhuHPp0apYhxvC+Y2n8yVkYonQKbxvxnG7PpAOclHPO4QQXYwjpo1gkaQKd1+BRkzyTQZzWhsd53MxSf4JPborHq6K6AsjyIIva0UZ93cYIliR8jmmkPCWZIImyjkwU6ss2TsBzXybJQAALEpg2dT2STmbk01yqXw/d0bvL2a3nQ8fA7pMwIuShBN1hGhM2WLMA8Bv2904Ic0cf85TX6IvEBP+Lh0YzGLtjROdfPoEdSitsL+eBjItGN45YatMsEX8aWHSh8DoOJMRK77dtnFBeks8oY5trCjZXeT1Sg/jkUlKtn18'
     },
     region: 'us-east-1'
 })

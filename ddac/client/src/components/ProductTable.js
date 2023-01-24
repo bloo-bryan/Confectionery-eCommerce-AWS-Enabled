@@ -3,8 +3,6 @@ import { productColumns, productRows } from "../utils/productdatatable";
 import { Link } from "react-router-dom";
 import {useEffect, useState} from "react";
 import styled from "styled-components";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {Loading} from "./index";
 import {fetchProducts, removeProduct} from "../features/adminProductSlice";
 import {useDispatch, useSelector} from "react-redux";
@@ -80,27 +78,6 @@ const ProductTable = () => {
         <Wrapper>
             <div className="datatableTitle">
                 Manage Products
-                <div className="search">
-                    <input type="text" placeholder="Search..." />
-                    <SearchOutlinedIcon />
-                </div>
-                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                    <InputLabel id="category-select-small">Category</InputLabel>
-                    <Select
-                        labelId="category-select-small"
-                        id="category-select-small"
-                        // value={age}
-                        label="Category"
-                        // onChange={handleChange} TODO: IMPLEMENT FILTER
-                    >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
             </div>
             <DataGrid
                 className="datagrid"

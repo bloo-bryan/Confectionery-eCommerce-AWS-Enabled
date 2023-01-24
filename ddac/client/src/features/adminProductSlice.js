@@ -32,8 +32,8 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk('adminProduct/fetchProducts', async(_, thunkAPI) => {
     try {
-        // TODO: GET MERCHANT ID FROM USER STATE
-        const response = await axios.get(`/all-products/${1}`)
+        const {userDetails} = thunkAPI.getState().user;
+        const response = await axios.get(`/all-products/${userDetails.userId}`)
         return response.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -71,7 +71,8 @@ export const addProductImages = createAsyncThunk('adminProduct/addProductImages'
 export const addProduct = createAsyncThunk('adminProduct/addProduct', async(formData, thunkAPI) => {
     try {
         const {products, currentProductDetails: {name, description, SKU, brand, price, quantity, category}} = thunkAPI.getState().adminProduct;
-        const merchant_id = 1 //products[0]['merchant_id']  // TODO: GET THIS FROM CURRENT MERCHANT STATE
+        const {userDetails} = thunkAPI.getState().user;
+        const merchant_id = userDetails.userId;
         const productRes = await axios.post(`/add-product`, {merchant_id, name, description, SKU, brand, price, quantity, category})
         const insertId = productRes.data.insertId;
         formData.append("pid", insertId);
@@ -92,15 +93,6 @@ export const updateProductDetails = createAsyncThunk('adminProduct/updateProduct
         thunkAPI.rejectWithValue(error.message);
     }
 })
-
-// export const fetchProducts = createAsyncThunk('adminProduct/fetchProducts', async(_, thunkAPI) => {
-//     try {
-//         const response = await axios.get('/images')
-//         return response.data;
-//     } catch(error) {
-//         thunkAPI.rejectWithValue(error.message);
-//     }
-// })
 
 export const removeProductImage = createAsyncThunk('adminProduct/removeProductImage', async(id, thunkAPI) => {
     try {

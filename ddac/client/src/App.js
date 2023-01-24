@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Navbar, Sidebar, Footer } from './components'
-
+import 'react-toastify/dist/ReactToastify.css'
 import {
     Home,
     SingleProduct,
@@ -19,9 +18,7 @@ import {countCartTotals} from "./features/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {filterProducts, loadProducts, sortProducts} from "./features/filterSlice";
 import {fetchFeaturedProducts, fetchProducts} from "./features/productsSlice";
-import {checkUser} from "./features/userSlice";
-import { products_url as url } from './utils/constants'
-import S3TestPage from "./pages/S3TestPage";
+import {ToastContainer} from "react-toastify";
 
 function App() {
     const dispatch = useDispatch();
@@ -31,11 +28,11 @@ function App() {
     const { isLoggedIn, userDetails } = useSelector((store) => store.user);
 
     useEffect(()=>{
-        window.localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+        localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
     }, [isLoggedIn])
 
     useEffect(()=>{
-        window.localStorage.setItem('userDetails', JSON.stringify(userDetails));
+        localStorage.setItem('userDetails', JSON.stringify(userDetails));
     }, [userDetails])
 
     useEffect(() => {
@@ -83,6 +80,18 @@ function App() {
                   <Route path='*' element={<Error/>}/>
               </Route>
           </Routes>
+          <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+          />
       </Router>
       // </AuthWrapper>
   )
