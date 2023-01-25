@@ -33,7 +33,7 @@ const initialState = {
 export const fetchProducts = createAsyncThunk('adminProduct/fetchProducts', async(_, thunkAPI) => {
     try {
         const {userDetails} = thunkAPI.getState().user;
-        const response = await axios.get(`/all-products/${userDetails.userId}`)
+        const response = await axios.get(`/all-products/${userDetails.merchantId}`)
         return response.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);
@@ -72,7 +72,7 @@ export const addProduct = createAsyncThunk('adminProduct/addProduct', async(form
     try {
         const {products, currentProductDetails: {name, description, SKU, brand, price, quantity, category}} = thunkAPI.getState().adminProduct;
         const {userDetails} = thunkAPI.getState().user;
-        const merchant_id = userDetails.userId;
+        const merchant_id = userDetails.merchantId;
         const productRes = await axios.post(`/add-product`, {merchant_id, name, description, SKU, brand, price, quantity, category})
         const insertId = productRes.data.insertId;
         formData.append("pid", insertId);

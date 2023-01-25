@@ -41,6 +41,7 @@ const cartSlice = createSlice({
                 const newItem = {
                     id: id,
                     name: product.name,
+                    merchantId: product.merchant_id,
                     amount,
                     image: product.url[0],
                     price: product.price,

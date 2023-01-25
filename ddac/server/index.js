@@ -151,7 +151,6 @@ app.get('/single-order/:oid', (req, res) => {
 
 
 app.post('/login',(req, res)=>{
-    console.log('Login requested');
     const q = 'SELECT * FROM User WHERE username = ?';
     const username = [req.body.username];
     db.query(q, username, (err, data) => {
@@ -168,6 +167,7 @@ app.post('/login',(req, res)=>{
                         result = {
                             status: 'logged in',
                             id: data[0].user_id,
+                            customerId: data[0].customer_id,
                             username: username[0],
                             name: data[0].name,
                             role: role,
@@ -185,6 +185,7 @@ app.post('/login',(req, res)=>{
                         result = {
                             status: 'logged in',
                             id: data[0].user_id,
+                            merchantId: data[0].merchant_id,
                             username: username[0],
                             name: data[0].name,
                             role: role,
@@ -303,8 +304,6 @@ app.post('/add-product', (req, res) => {
 })
 
 app.post('/upload-img', upload.array('images', 10), async (req, res) => {
-    console.log(req.files)
-    console.log(req.body.pid)
     let images = [];
     for (let file of req.files) {
         const buffer = await sharp(file.buffer).resize({height: 1080, width: 1080, fit: "cover"}).toBuffer()
@@ -323,6 +322,25 @@ app.post('/upload-img', upload.array('images', 10), async (req, res) => {
     db.query(q, [images.map(imgName => [req.body.pid, imgName])], (err, data) => {
         if(err) return res.json(err);
         return res.json(data);
+    })
+})
+
+app.post('/create-order', async(req, res) => {
+    const {customerId, cart, total_amount, shipping_fee} = req.body;
+    const q = "INSERT INTO `Order` SET `customer_id` = ?, `merchant_id` = ?, total = ?, shipping = ?, payment_id = 1, status = 'confirmed'"
+    db.query(q, [customerId, cart[0].merchantId, total_amount, shipping_fee], (err, data) => {
+        if(err) return res.json(err);
+        if(data.affectedRows !== 0) {
+            const insertId = data.insertId;
+            let responses = []
+            for(let item of cart) {
+                db.query("INSERT INTO OrderDetail SET `order_id` = ?, `product_id` = ?, quantity = ?", [insertId, item.id, item.amount], (err, data2) => {
+                    if(err) return res.json(err);
+                    else responses.push(data2)
+                })
+            }
+            return res.json(responses)
+        }
     })
 })
 

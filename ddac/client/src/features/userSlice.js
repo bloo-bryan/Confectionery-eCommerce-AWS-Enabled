@@ -120,6 +120,7 @@ const userSlice = createSlice({
                         case 'customer':
                             tempUser = {
                                 userId: result.id,
+                                customerId: result.customerId,
                                 name: result.name,
                                 username: result.username,
                                 role: result.role,
@@ -131,6 +132,7 @@ const userSlice = createSlice({
                         case 'merchant':
                             tempUser = {
                                 userId: result.id,
+                                merchantId: result.merchantId,
                                 name: result.name,
                                 username: result.username,
                                 role: result.role,

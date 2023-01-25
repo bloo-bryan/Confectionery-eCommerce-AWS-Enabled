@@ -10,7 +10,7 @@ const initialState = {
 export const fetchOrders = createAsyncThunk('adminOrder/fetchOrders', async(_, thunkAPI) => {
     try {
         const {userDetails} = thunkAPI.getState().user;
-        const response = await axios.get(`/all-orders/${userDetails.userId}`)
+        const response = await axios.get(`/all-orders/${userDetails.merchantId}`)
         return response.data;
     } catch(error) {
         thunkAPI.rejectWithValue(error.message);

@@ -17,10 +17,6 @@ const OrderTable = () => {
     const dispatch = useDispatch();
     const {orders} = useSelector((store) => store.adminOrder);
 
-    const handleDelete = (id) => {
-        setData(data.filter((item) => item.id !== id));
-    };
-
     const actionColumn = [
         {
             field: "action",

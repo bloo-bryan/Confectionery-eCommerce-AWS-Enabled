@@ -18,7 +18,7 @@ const promise = loadStripe('pk_test_51MReqiBcfCWP6dm5gxptxfP2D34Q8TWaJdyUeljatTg
 
 const CheckoutForm = () => {
   const { cart, total_amount, shipping_fee } = useSelector((store) => store.cart);
-  // const { myUser } = useSelector((store) => store.user)
+  const { userDetails } = useSelector((store) => store.user)
   const navigate = useNavigate()
   const dispatch = useDispatch();
   // STRIPE STUFF
@@ -76,6 +76,14 @@ const CheckoutForm = () => {
     }
   }
 
+const confirmOrder = async() => {
+    try {
+      await axios.post(`/create-order`, {customerId: userDetails.customerId, cart, total_amount, shipping_fee})
+    } catch(error) {
+      console.log(error)
+    }
+}
+
   const handleChange = async (event) => {
     setDisabled(event.empty)
     setError(event.error ? event.error.message : '')
@@ -97,6 +105,7 @@ const CheckoutForm = () => {
       setSucceeded(true)
       setTimeout(() => {
         removeQuantity().catch(console.error);
+        confirmOrder().catch(console.error)
         dispatch(clearCart())
         navigate('/')
       }, 1000)
