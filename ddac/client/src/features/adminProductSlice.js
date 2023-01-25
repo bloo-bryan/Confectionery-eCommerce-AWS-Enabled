@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const initialProductDetails = {
     product_id: '',
@@ -130,7 +131,16 @@ const adminProductSlice = createSlice({
             // state.uploading = true;
         },
         [addProduct.fulfilled]: (state) => {
-            // state.uploading = true;
+            toast.success('Product added!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         },
         [addProduct.rejected]: (state, {payload}) => {
             // state.uploading = true;
@@ -170,6 +180,18 @@ const adminProductSlice = createSlice({
         [addProductImages.fulfilled]: (state) => {
             state.uploading = false;
             // toast
+        },
+        [removeProduct.fulfilled]: (state) => {
+            toast.success('Product removed!', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         }
     }
 })

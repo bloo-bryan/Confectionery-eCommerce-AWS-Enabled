@@ -6,18 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eb91b6ca-4b9a-4e73-b57e-24964f0cda12" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.322910cb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.322910cb.js.LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/build/static/js/main.322910cb.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/OrderTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/components/StripeCheckout.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/components/StripeCheckout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminOrderSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/adminProductSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/cartSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/cartSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/client/src/features/userSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ddac/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ddac/server/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +115,7 @@
       <workItem from="1674360871518" duration="27658000" />
       <workItem from="1674464098923" duration="2403000" />
       <workItem from="1674540206977" duration="3590000" />
-      <workItem from="1674614321867" duration="1006000" />
+      <workItem from="1674614321867" duration="2295000" />
     </task>
     <servers />
   </component>
